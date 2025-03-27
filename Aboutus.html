@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+          /* *{border: 1px solid black;}   */
+body {
+  margin: 0;
+}
+
+.header-section {
+  background-color: white;
+  position: relative;
+  top: 10px; /* Keeps this section fixed at the top of the viewport */
+  z-index: 10; /* Ensures it's on top of the next section */
+  width: 100%; /* Ensure it spans the entire width */
+  padding-bottom: 20px; /* Optional space between header and next section */
+}
+
+#eternity-title {
+  position: relative;
+  top: 8px;
+  text-align: center;
+  font-family: Signika;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
+/* Base navbar styling */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    list-style: none; /* Ensures no bullet points appear */
+
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 40px;
+    font-family: Signika;
+    padding: 10px 0;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 85%; /* Place it directly below the parent item */
+    left: 0; /* Align dropdown to the left of the page */
+    width: 93.7%; /* Span the entire width of the page */
+    display: flex; /* Display dropdown items in a row */
+    align-items: center;
+    padding: 10px 0; /* Adjust padding for better spacing */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern design */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000; /* Ensure it is above other content */
+    list-style: none; /* Remove bullet points */
+    border: none; /* Remove border for a cleaner look */
+}
+
+/* Show dropdown menu on hover */
+.navbar-nav .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+    border-bottom: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+
+
+}
+
+/* Dropdown items styling */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #555555;
+    font-family: Signika;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px; /* Adjust padding for consistent spacing */
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 35px; /* Control horizontal spacing between links */
+}
+
+/* Hover effect on dropdown items */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #555555;
+    color: white;
+}
+.nav-item .dropdown-menu {
+    left: 0; /* Ensure the dropdown starts at the parent link */
+    padding-left: 90px; /* Add padding to align with the Home link */
+}
+
+
+/* Remove bullet points in the dropdown menu */
+.navbar-nav .dropdown-menu {
+    list-style: none; /* Ensures no bullet points appear */
+}
+
+.welcometoeternitygemstones {
+  position: relative;
+  top: 50px;
+}
+
+footer{
+      background-color: #555555;
+      position:relative;
+      top: 150px;
+      z-index: 1;
+      height:500px;
+    }
+    .footerposition{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:40px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerfollow{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:30px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerlinks{
+      font-family: signika;
+      letter-spacing: 2px;
+      color: white;
+      margin: 0 18px;
+      padding: 10px 0;
+      text-decoration: none;
+      position: relative;
+      left:540px;
+      top:50px;
+    }
+    .search-container {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align horizontally */
+  margin: 20px;
+    }
+    .search-input {
+      border: none;           /* Remove all borders */
+      background-color: #555555;
+      color:white;
+      border-top: none;       /* Remove top border */
+      border-left: none;      /* Remove left border */
+      border-right: none;     /* Remove right border */
+      border-bottom: 2px solid white;  /* Add only bottom underline */
+      padding: 10px;          /* Add some padding inside the input */
+      position:relative;
+      top:35px;
+      font-size: 15px;        /* Adjust font size */
+      width: 300px;           /* Set width of the input */
+      outline: none;          /* Remove default focus outline */
+      text-align: center;
+    }
+    /* Button styling */
+    .search-button {
+      background-color: #555555;  /* Button background color */
+      border: 2px solid white; /* White border with 2px thickness */
+      position: relative;
+      width: 200px;
+      font-size: ;
+      height:40px;
+      color: #fff;  /* Button text color */
+      padding: 7px 20px;  /* Button padding */
+      margin-top: 55px;     /* Space between input and button */
+      cursor: pointer;     /* Change cursor to pointer on hover */
+      overflow: hidden; /* Hide the fill effect outside the button */
+      transition: color 0.4s ease; /* Smooth transition for text color */
+      z-index: 1; /* Ensure button text stays on top of the fill effect */
+    }
+    /* Create the filling effect using the ::after pseudo-element */
+    .search-button::after {
+      content: ''; /* Required for pseudo-element */
+      position: absolute;
+      top: 0;
+      left: -100%; /* Start from the left side (hidden) */
+      width: 100%; /* Full width */
+      height: 100%; /* Full height of the button */
+      background-color: white;
+      z-index: -1; /* Place the filling effect below the text */
+      transition: left 0.4s ease; /* Smooth transition for the fill effect */
+    }
+    /* Hover effect on the button */
+    .search-button:hover {
+      color: #555555; /* Change text color to #555555 when hovered */
+    }
+    /* Hover effect on the button's ::after pseudo-element */
+    .search-button:hover::after {
+      left: 0; /* Move the fill effect from left to right */
+    }
+    /* Placeholder styling */
+    .search-input::placeholder {
+      color: white; /* Change placeholder text color */
+      opacity: 1; /* Ensure placeholder text is fully opaque */
+    }
+
+    .aboutus footer{
+        top:450px;
+    }
+
+    .blackhand-container {
+    position: fixed; /* CHANGED THIS BACK TO FIXED FOR EFFECT Ensure the image and content align correctly */
+    top:160px;
+    left:110px;
+    z-index: 1;
+    width: 1200px;  /* or any specific width like 500px */
+    height: 300px;  /* or any specific height */
+    margin: 0 auto;
+}
+
+.blackhand {
+    position:absolute;
+    right: -80px;
+    width: 1350px;  /* or any specific width like 500px */
+    height: 535px;  /* or any specific height */
+    object-fit: cover;  /* Prevents cropping or stretching */
+
+}
+
+.content {
+    width:1000px;
+    position: absolute;
+    top: 65%; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    z-index: 1; /* Ensure it stays above the image */
+    color: white; /* Text color for contrast */
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px; /* Optional: Rounded corners */
+    letter-spacing: 1px;
+    font-family: Signika;
+}
+.content h2{
+    font-size: 70px;
+    position: relative;
+    bottom:60px;
+}
+.styled-line {
+    position: absolute;
+    top:470px;
+    z-index: 2; /* Ensure it stays above the image */
+    border: none;           /* Remove default border */
+    height: 2px;            /* Line thickness */
+    background-color: #FFFFFF;
+    width: 100%;            /* Full width of the container */
+    opacity: 0.8;
+}
+.link-row {
+    left:355px;
+    top:482px;
+    gap:25px;
+    position: absolute;
+    z-index: 2;
+    display: flex;                    /* Use flexbox for horizontal layout */
+    justify-content: space-between;    /* Space between each link */
+}
+
+.link {
+    color: #FFFFFF;                  /* White color for the links */
+    text-decoration: none;            /* Remove underline */
+    font-size: 1.2rem;                /* Set font size */
+    padding: 10px;                    /* Add some padding around the links */
+    transition: color 0.3s ease;      /* Smooth color transition on hover */
+}
+
+.link:hover {
+    color: #ddd;                     /* Slightly lighter white on hover */
+}
+.text-image-section {
+    position:relative;
+    background-color: white;
+    z-index: 2;
+    top:570px;
+    display: flex;
+    align-items: center; /* Vertically aligns items in the center */
+    justify-content: space-between; /* Distributes the space evenly between the text and the image */
+    padding: 40px;
+    max-width: 1450px;
+    height:1000px;
+    margin: 0 auto; /* Centers the section horizontally */
+}
+
+.text-content {
+    flex: 1; /* This allows the text section to take up remaining space */
+    padding-right: 20px; /* Adds space between the text and the image */
+    color:black;
+    height:580px;
+    position: relative;
+    max-width: 500px;
+    left:150px;
+}
+.image-content{
+    position:relative;
+    top:70px;
+}
+
+.image-content img {
+    width: 100%; /* Makes the image responsive */
+    max-width: 600px; /* Limits the image width, adjust as needed */
+    height: auto; /* Maintains the aspect ratio of the image */
+    border-radius: 10px; /* Optional, adds rounded corners */
+
+}
+.ourstory{
+    position:relative;
+    width:230px;
+    bottom:230px;
+    left:400px;
+}
+.ourstory p{
+    font-size: 50px;
+    font-family: Signika;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.ourstoryinfo{
+    font-family: Signika;
+    font-size: 22px;
+}
+.ourstoryinfo1{
+    position: relative;
+    width:300px;
+    left:178px;
+    top:50px;
+
+}
+.ourstoryinfo1 p{
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+}
+.new-image-text-section {
+    display: flex;
+    align-items: center; /* Vertically centers content */
+    justify-content: space-between; /* Adds space between image and text */
+    margin: 60px 0; /* Adjust top and bottom margin */
+    position:relative;
+    height:1200px;
+    z-index: 2;
+    background-color: white;
+    top:510px;
+}
+.whatwedo{
+    position:relative;
+    width:390px;
+    left:570px;
+    bottom:490px;
+}
+.whatwedo p{
+    font-size: 50px;
+    font-family: Signika;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.new-image-container {
+    position: relative;
+    width: 100%; /* Makes the image responsive */
+    max-width: 600px; /* Limits the image width, adjust as needed */
+    right:240px;
+    top:70px;
+}
+
+.new-image {
+    width: 100%; /* Makes image responsive */
+    height: auto;
+    border-radius: 10px; /* Optional, adds rounded corners */
+}
+
+.new-text-container {
+    position: absolute;
+    top:390px;
+    width: 30%; /* Adjust width as needed */
+    right:110px;
+    
+}
+
+.new-text-container p {
+    font-family: Signika;
+    font-size: 21px;
+    line-height: 1.7;
+}
+.new-text-container1{
+    position: relative;
+    top:170px;
+    width: 30%; /* Adjust width as needed */
+    right:70px;
+    
+}
+.new-text-container1 p{
+    font-family: 'Georgia', serif;
+    font-size: 17px;
+    line-height: 25px;
+}
+.new-text-container2{
+    position: absolute;
+    left:923px;
+    bottom: 290px;
+}
+.new-text-container2 p{
+    font-family: Signika;
+    font-size: 21px;
+    line-height: 1.7;
+}
+.section3{
+    align-items: center; /* Vertically centers content */
+    position:relative;
+    height:700px;
+    z-index: 2;
+    background-color: white;
+    top:450px;
+}
+.ourvalues{
+    position:relative;
+    width:390px;
+    left:570px;
+}
+.ourvalues p{
+    font-size: 50px;
+    font-family: Signika;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.values-section {
+    position: relative;
+    top:55px;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    padding: 40px;
+}
+
+/* Individual Value Cards */
+.value-card {
+    position: relative; /* Position relative for pseudo-element positioning */
+    background-image: url('transparency.jpg'); /* Background image */
+    overflow: hidden;
+    width: 340px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+    transition: transform 0.4s ease; /* Smooth transition for scaling */
+}
+.value-card::before {
+    content: ''; /* Required for pseudo-element */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+    z-index: 1; /* Place below the text */
+}
+
+.value-card h3 {
+    position: relative; /* Ensure text stays above the overlay */
+    z-index: 2; /* Set higher stacking order than ::before */
+}
+.value-card img{
+    filter: brightness(50%);
+}
+
+/* Hover Effect for Value Cards */
+.value-card:hover {
+    transform: scale(1.05);
+}
+
+/* Expanded Card */
+.expanded-card {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    visibility: hidden; /* Initially hidden but occupies space */
+    opacity: 0; /* Start fully transparent */
+    transform: scale(0.95); /* Start slightly smaller */
+    z-index: 10000;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    overflow: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+.expanded-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1; /* Overlay stays behind the text */
+}
+
+/* Content inside the expanded card */
+.expanded-card > * {
+    z-index: 2; /* Ensure content (text) appears on top of the overlay */
+}
+
+/* Expanded Card when active */
+.expanded-card.active {
+    visibility: visible;
+    opacity: 1;
+    transform: scale(1);
+}
+/* When the card is expanded */
+.expanded-card.active {
+    visibility: visible; /* Make visible */
+    opacity: 1; /* Fade in */
+    transform: scale(1); /* Expand to full size */
+}
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.7);
+    color: black;
+}
+/* Content Inside Expanded Card */
+.expanded-content {
+    position: relative;
+    left:400px;
+    top:200px;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 1.5rem;
+    max-width: 600px;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(20px); /* Start slightly below */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition-delay: 0.3s; /* Delay content fade-in for smoother effect */
+}
+/* Title in Expanded Card */
+#expanded-title {
+    font-family: Signika;
+    position:relative;
+    bottom:80px;
+    color: white;
+    position: relative;
+    font-size: 3rem;
+}
+/* Text in Expanded Card */
+#expanded-text {
+    font-family: Signika;
+    position: relative;
+    bottom:60px;
+    color: white;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin: 0 auto;
+}
+/* Show content when card is expanded */
+.expanded-card.active .expanded-content {
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+}
+.text-image-section4 {
+    position:relative;
+    background-color: white;
+    z-index: 1;
+    top:450px;
+    display: flex;
+    align-items: center; /* Vertically aligns items in the center */
+    justify-content: space-between; /* Distributes the space evenly between the text and the image */
+    padding: 40px;
+    max-width: 1450px;
+    height:1000px;
+    margin: 0 auto; /* Centers the section horizontally */
+}
+
+.text-content4 {
+    flex: 1; /* This allows the text section to take up remaining space */
+    padding-right: 20px; /* Adds space between the text and the image */
+    color:black;
+    height:580px;
+    position: relative;
+    bottom:50px;
+    max-width: 500px;
+    left:150px;
+}
+.image-content4{
+    position:relative;
+    top:60px;
+}
+
+.image-content4 img {
+    width: 100%; /* Makes the image responsive */
+    max-width: 600px; /* Limits the image width, adjust as needed */
+    height: auto; /* Maintains the aspect ratio of the image */
+    border-radius: 10px; /* Optional, adds rounded corners */
+
+}
+.ourstory4{
+    position:relative;
+    width:230px;
+    bottom:210px;
+    left:400px;
+}
+.ourstory4 p{
+    font-size: 50px;
+    font-family: Signika;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+.ourstoryinfo4{
+    font-family: Signika;
+    font-size: 22px;
+}
+.ourstoryinfo14{
+    position: relative;
+    width:300px;
+    left:178px;
+    top:50px;
+
+}
+.ourstoryinfo14 p{
+    font-family: 'Georgia', serif;
+    font-size: 15px;
+}
+.ourstorymove{
+    position: relative;
+    top: 50px;
+}
+    </style>
+</head>
+<body class="aboutus">
+    <div class="header-section">
+        <div id="eternity-title">
+        Eternity Gemstones
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav justify-content-center mx-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.html" id="home-link"
+                                data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="productspagenew.html" id="rubies-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Products</a>
+                            <div class="dropdownwrapper2">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="productspagenew.html">Amethyst</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Diamond</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Ruby</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Sapphire</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Emerald</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="amethyst-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Amethyst</a>
+                            <div class="dropdownwrapper4">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Amethyst Type 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Amethyst Type 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="diamonds-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Diamonds</a>
+                            <div class="dropdownwrapper5">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Diamond Type 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Diamond Type 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="contactpage.html" id="garnet-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Contact Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="Aboutus.html" id="sapphire-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>  
+    <div class="blackhand-container">
+        <img class="blackhand" src="blackhand.jpg" alt="Blackhand">
+        <div class="content">
+            <h2>About Eternity Gemstones</h2>
+        </div>
+        <hr class="styled-line">  
+        <div class="link-row">
+            <a href="#section1" class="link">Our story</a>
+            <a href="#section2" class="link">What we do</a>
+            <a href="#section3" class="link">Our values</a>
+            <a href="#section4" class="link">Our mission</a>
+        </div>  
+    </div>
+    <div class="text-image-section" id="section1">
+        <div class="text-content">
+            <div class="ourstory">
+                <p>Our Story</p>
+            </div>
+            <div>
+                <p class="ourstoryinfo">
+                    Eternity Gemstones is a <i>premier curator</i> and <span style="color: #C0C0C0;">distributor of ethically sourced, 
+                    world-class </span><i>coloured gemstones. </i> <br><br>
+                    We take pride in offering <span style="color: #C0C0C0;"><i>premium emeralds </i></span>from Zambia and exquisite 
+                    <span style="color: #C0C0C0;"><i>rubies</i></span> from <span style="color: #C0C0C0;">Mozambique,</span> 
+                    ensuring a commitment to transparency, authenticity, and ethical practices.  
+                </p>
+            </div>
+            <div class="ourstoryinfo1">
+                <p>Our commitment to <i>sustainability and craftsmanship </i> <span style="color: #C0C0C0;">sets us apart, </span>
+                ensuring that every piece we offer is not only a work of art but also a testament to our dedication to 
+                <span style="color: #C0C0C0;">responsible sourcing </span>and <i>timeless elegance.</i>
+                </p>
+            </div>
+        </div>
+        <div class="image-content">
+            <img src="mountain1.jpg" alt="Descriptive Alt Text">
+        </div>
+    </div> 
+    <section class="new-image-text-section" id="section2">
+        <div class="whatwedo">
+            <p>What we do</p>
+        </div>
+        <div class="new-image-container">
+            <img src="sandymountain.jpg" alt="Description of image" class="new-image">
+        </div>
+        <div class="new-text-container">
+            <p>
+                At Eternity Gemstones, we focus on the <i>ethical sourcing </i>and showcasing of <span style="color: #C0C0C0;">
+                exquisite colored gemstones </span>
+                from some of the <i>world’s most remarkable deposits. </i>Our commitment ensures these treasures not only captivate 
+                but also <span style="color: #C0C0C0;">positively impact</span> the communities involved in their journey.
+            </p>
+        </div>
+        <div class="new-text-container1">
+            <p>
+                With deep respect for the environment 
+                and the people who call it home, we uphold principles of <span style="color: #C0C0C0;"><i>
+                transparency, fairness, and sustainability </i></span>in every 
+                step of our process.            
+            </p>
+        </div>
+        <div class="new-text-container2">
+            <p><span style="color: #C0C0C0;"><i>Crafting timeless beauty, </i></span>one gemstone at a time.</p>
+        </div>
+    </section>
+    <section class="section3" id="section3">
+        <div class="ourvalues">
+            <p>Our Values</p>
+        </div>
+        <div class="values-section">
+            <!-- Card 1 -->
+            <div class="value-card" onclick="expandCard(this)" style="background-image: url('transparency.jpg');">
+                <h3>Transparency</h3>
+            </div>
+            <!-- Card 2 -->
+            <div class="value-card" onclick="expandCard(this)" style="background-image: url('sustainability.jpg');">
+                <h3>Sustainability</h3>
+            </div>
+            <!-- Card 3 -->
+            <div class="value-card" onclick="expandCard(this)" style="background-image: url('integrity.jpg');">
+                <h3>Integrity</h3>
+            </div>
+        </div>
+    
+        <!-- Expanded Card -->
+        <div class="expanded-card">
+            <button class="close-btn" onclick="closeCard()">×</button>
+            <div class="expanded-content">
+                <h2 id="expanded-title">Title</h2>
+                <p id="expanded-text">Detailed information about the value goes here.</p>
+            </div>
+        </div>
+    </section>
+    <section class="text-image-section4">
+        <div class="text-content4">
+            <div class="ourstory4">
+                <p>Our Story</p>
+            </div>
+            <div class="ourstorymove">
+                <div class="ourstoryinfo4">
+                    <p>
+                        Eternity Gemstones is a <i>premier curator</i> and <span style="color: #C0C0C0;">distributor of ethically sourced, 
+                        world-class </span><i>coloured gemstones. </i> <br><br>
+                        We take pride in offering <span style="color: #C0C0C0;"><i>premium emeralds </i></span>from Zambia and exquisite 
+                        <span style="color: #C0C0C0;"><i>rubies</i></span> from <span style="color: #C0C0C0;">Mozambique,</span> 
+                        ensuring a commitment to transparency, authenticity, and ethical practices.  
+                    </p>
+                </div>
+                <div class="ourstoryinfo14">
+                    <p>Our commitment to <i>sustainability and craftsmanship </i> <span style="color: #C0C0C0;">sets us apart, </span>
+                    ensuring that every piece we offer is not only a work of art but also a testament to our dedication to 
+                    <span style="color: #C0C0C0;">responsible sourcing </span>and <i>timeless elegance.</i>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="image-content4">
+            <img src="mountain1.jpg" alt="Descriptive Alt Text">
+        </div>
+    </section>  
+</body>
+<footer>
+    <div class="footerposition">
+    <p><span style="font-family: 'Monotype Corsiva', cursive; font-size: 30px;position:relative;bottom:10px;">Sign up </span> <br> <span style="font-size: 20px;;">to our newsletter</span></p>
+    </div>
+    <div class="search-container">
+    <input type="email" class="search-input" placeholder="Your email">
+    <button class="search-button">Submit</button>
+    </div>          
+    <div class="footerfollow">
+    Follow Eternity Gemfields
+    </div>
+    <div>
+    <a class="footerlinks" href="#">Instagram</a><a class="footerlinks" href="#">Facebook</a><a class="footerlinks" href="#">Twitter</a>
+    </div>
+</footer>
+
+<script>
+function expandCard(card) {
+    const expandedCard = document.querySelector('.expanded-card');
+
+    // Reset visibility and add active class to start the animation
+    expandedCard.style.visibility = 'visible';
+    expandedCard.classList.add('active');
+
+    // Set the background image, title, and description dynamically
+    expandedCard.style.backgroundImage = card.style.backgroundImage;
+    const title = card.querySelector('h3').textContent;
+    document.getElementById('expanded-title').textContent = title;
+    document.getElementById('expanded-text').textContent = getExpandedContent(title);
+}
+
+function closeCard() {
+    const expandedCard = document.querySelector('.expanded-card');
+
+    // Remove the active class to start the fade-out animation
+    expandedCard.classList.remove('active');
+
+    // Wait for the animation to finish before hiding the element
+    setTimeout(() => {
+        expandedCard.style.visibility = 'hidden';
+    }, 500); // Match the transition duration in the CSS
+}
+
+function getExpandedContent(title) {
+    switch (title) {
+        case 'Transparency':
+            return "We believe in honesty and openness in every step of our journey, ensuring confidence in every gemstone.We believe in honesty and openness in every step of our journey, ensuring confidence in every gemstone.Transparency ensures that every step of the journey, from sourcing to crafting, is open and honest. We believe that you deserve to know the origins of your gemstone, the hands that shaped it, and the standards that guided its creation. By maintaining clear and ethical practices, we build confidence and foster lasting relationships.";
+        case 'Sustainability':
+            return "Gemstones are treasures of the earth, and it is our responsibility to preserve that earth for future generations. Sustainability means committing to environmentally conscious practices, reducing our ecological footprint, and supporting communities impacted by the gemstone trade. By prioritizing the planet, we ensure that the beauty of our gemstones is matched by the care for the world they come from.";
+        case 'Integrity':
+            return "Integrity is about doing the right thing, even when no one is watching. From responsible sourcing to fair treatment of artisans and workers, integrity guides every decision we make. It reflects our promise to provide gemstones that are not only beautiful but also ethically sourced and crafted with respect for people and nature. \nThese values are not just words; they are our commitment to ensuring that every gemstone we offer is a symbol of beauty, responsibility, and trust. When you choose our gemstones, you are not only embracing elegance but also supporting a vision of a better, more ethical world.";
+
+        default:
+            return "Detailed information about the value goes here.";
+    }
+}
+</script>
+</html>

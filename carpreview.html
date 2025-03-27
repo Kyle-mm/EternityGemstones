@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /* Cart Preview Styling */
+        .cart-preview {
+            position: relative;
+            top: 80px;
+            width: 400px;
+            height: 550px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            z-index: 1000;
+            visibility: visible; /* Initially hidden */
+            opacity: 1;
+            transition: visibility 0s 0.3s, opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        /* Cart Item Styling */
+        .cart-item {
+            align-items: center;
+            display: flex;
+            justify-content: flex-start;
+            width: 400px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative; /* Keep it relative to avoid it affecting layout */
+            height: 80px; /* Ensure consistent height */
+        }
+        
+        .cartcontents {
+            display: flex;
+            flex-direction: row;
+            width: 100%; /* Ensure it takes up the entire space */
+            justify-content: space-between; /* Distribute space between item info, quantity controls, and price */
+            align-items: center; /* Vertically align items */
+        }
+        
+        .cart-item-info {
+            display: flex;
+            flex-direction: column; /* Stack text vertically */
+            justify-content: flex-start;
+            width: 200px; /* Fixed width for consistent alignment */
+            height: 60px;
+            position: relative;
+            left:10px;
+            top:5px;
+            gap:5px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Adjust width of quantity controls to fit the layout */
+            height: 100px;
+            position: relative;
+        }
+        
+        .cart-item-info p {
+            margin: 0; /* Remove margin for all <p> tags */
+            padding: 0; /* Remove padding */
+        }
+        
+        /* Product name and other details styling */
+        .product-name {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .code {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+        }
+        
+        .instock {
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .product-price {
+            font-size: 16px;
+            color: #666;
+            width: 70px;
+            text-align: right; /* Align price to the right */
+            flex-shrink: 0; /* Prevent shrinking */
+            position: relative;
+            bottom:20px;
+        }
+        
+        /* Quantity Buttons */
+        .quantity-btn, .quantity-btn1 {
+            border: none;
+            background-color: #f1f1f1;
+            color: #333;
+            font-size: 18px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20%;
+        }
+        
+        .quantity-btn1 {
+            background-color: #555;
+            color: white;
+        }
+        
+        /* Quantity Text */
+        .quantity {
+            font-size: 16px;
+            margin: 0 7px; /* Space between the buttons and quantity */
+        }
+        
+        /* Remove Button Styling */
+        .remove-btn {
+            color: black;
+            border: none;
+            font-size:12px;
+            background-color: white;
+            cursor: pointer;
+            position: absolute;
+            padding: 0;
+            top: 80px; /* Move it below the image (adjust as needed) */
+            transform: translateY(0); /* Ensure it stays below the image */
+        }
+        
+        /* Cart Item Image */
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 10px;
+            position: relative; /* Ensure the image doesn't interfere with the remove button positioning */
+        }
+        </style>
+        
+        <body>
+            <div class="cart-preview">
+                <div class="cart-item">
+                    <img src="rubynecklace.jpg" alt="Ruby Necklace">
+                    <button class="remove-btn" onclick="removeItem(0)">Remove</button>
+                    <div class="cartcontents">
+                        <div class="cart-item-info">
+                            <p class="product-name">Ruby Necklace</p>
+                            <p class="code">code: 101240</p>
+                            <p class="instock">In stock</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="decreaseQuantity(0)">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn1" onclick="increaseQuantity(0)">+</button>
+                        </div>
+                        <p class="product-price">£250</p>
+                    </div>
+                </div>
+            
+                <div class="cart-item">
+                    <img src="emeraldearring.jpg" alt="Emerald Ring">
+                    <button class="remove-btn" onclick="removeItem(1)">Remove</button>
+                    <div class="cartcontents">
+                        <div class="cart-item-info">
+                            <p class="product-name">Emerald Ring</p>
+                            <p class="code">code: 101240</p>
+                            <p class="instock">In stock</p>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="decreaseQuantity(1)">-</button>
+                            <span class="quantity">1</span>
+                            <button class="quantity-btn1" onclick="increaseQuantity(1)">+</button>
+                        </div>
+                        <p class="product-price">£250</p>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                // Sample cart data, define a cart array to hold the cart items
+                let cart = [
+                    {
+                        name: "Ruby Necklace",
+                        price: 250,
+                        quantity: 1
+                    },
+                    {
+                        name: "Emerald Ring",
+                        price: 250,
+                        quantity: 1
+                    }
+                ];
+        
+                // Function to increase quantity
+                function increaseQuantity(index) {
+                    cart[index].quantity += 1; // Increment the quantity
+                    updateCartPreview(); // Update the cart preview after modification
+                }
+        
+                // Function to decrease quantity
+                function decreaseQuantity(index) {
+                    if (cart[index].quantity > 1) { // Prevent going below 1
+                        cart[index].quantity -= 1; // Decrease the quantity
+                        updateCartPreview(); // Update the cart preview after modification
+                    }
+                }
+        
+                // Function to remove an item from the cart
+                function removeItem(index) {
+                    cart.splice(index, 1); // Remove the item from the cart array
+                    updateCartPreview(); // Update the cart preview after item removal
+                }
+        
+                // Function to update the cart preview display
+                function updateCartPreview() {
+                    const cartPreview = document.querySelector('.cart-preview');
+                    cartPreview.innerHTML = ''; // Clear the current cart preview
+        
+                    // Loop through each item in the cart and append it to the preview
+                    cart.forEach((item, index) => {
+                        const cartItem = document.createElement('div');
+                        cartItem.classList.add('cart-item');
+                        cartItem.innerHTML = `
+                            <img src="${item.name.toLowerCase().replace(' ', '') + '.jpg'}" alt="${item.name}">
+                            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                            <div class="cartcontents">
+                                <div class="cart-item-info">
+                                    <p class="product-name">${item.name}</p>
+                                    <p class="code">code: 101240</p>
+                                    <p class="instock">In stock</p>
+                                </div>
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                                    <span class="quantity">${item.quantity}</span>
+                                    <button class="quantity-btn1" onclick="increaseQuantity(${index})">+</button>
+                                </div>
+                                <p class="product-price">£${item.price}</p>
+                            </div>
+                        `;
+                        cartPreview.appendChild(cartItem); // Append the cart item to the cart preview
+                    });
+                }
+        
+                // Initialize cart preview when the page loads
+                updateCartPreview();
+            </script>
+        </body>
+        
+</html>

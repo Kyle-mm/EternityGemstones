@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+  <style>
+    /* *{border: 1px solid black;}  */
+    body {
+      margin: 0;
+    }
+    .header-section {
+  background-color: white;
+  position: relative;
+  top: 10px; /* Keeps this section fixed at the top of the viewport */
+  z-index: 10; /* Ensures it's on top of the next section */
+  width: 100%; /* Ensure it spans the entire width */
+  padding-bottom: 20px; /* Optional space between header and next section */
+}
+
+#eternity-title {
+  position: relative;
+  top: 8px;
+  text-align: center;
+  font-family: Signika;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-size: 30px;
+}
+
+/* Base navbar styling */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    list-style: none; /* Ensures no bullet points appear */
+
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 40px;
+    font-family: Signika;
+    padding: 10px 0;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 82%; /* Place it directly below the parent item */
+    left: 0; /* Align dropdown to the left of the page */
+    width: 93.7%; /* Span the entire width of the page */
+    display: flex; /* Display dropdown items in a row */
+    align-items: center;
+    padding: 10px 0; /* Adjust padding for better spacing */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern design */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000; /* Ensure it is above other content */
+    list-style: none; /* Remove bullet points */
+    border: none; /* Remove border for a cleaner look */
+}
+
+/* Show dropdown menu on hover */
+.navbar-nav .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+    border-bottom: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+
+
+}
+
+/* Dropdown items styling */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #555555;
+    font-family: Signika;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px; /* Adjust padding for consistent spacing */
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 35px; /* Control horizontal spacing between links */
+}
+
+/* Hover effect on dropdown items */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #555555;
+    color: white;
+}
+.nav-item .dropdown-menu {
+    left: 0; /* Ensure the dropdown starts at the parent link */
+    padding-left: 90px; /* Add padding to align with the Home link */
+}
+
+
+/* Remove bullet points in the dropdown menu */
+.navbar-nav .dropdown-menu {
+    list-style: none; /* Ensures no bullet points appear */
+}
+
+.welcometoeternitygemstones {
+  position: relative;
+  top: 50px;
+}
+    /* Parent container for both sections */
+.scroll-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Left side: Scrolling content */
+.scrolling-side {
+  flex: 1;
+  height: auto;
+  overflow: hidden;
+}
+.scrolling-side img {
+  width: 100%; /* Responsive width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.main-image-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px; /* Add spacing between the main image and thumbnails */
+  border: 1px solid #ddd;
+  border-radius: 20px;
+}
+
+#main-image {
+  width: 100%; /* Adjust as needed */
+  height: auto;
+  border-radius: 20px;
+}
+
+.thumbnail-container {
+  width:710px;
+  grid-template-columns: repeat(5, 1fr); /* 5 thumbnails per row */
+  display: grid;
+  gap: 10px;
+  margin-top: 10px; /* Space between the thumbnails and the main image */
+}
+
+.thumbnail {
+  width: 135px; /* Adjust as needed */
+  height: auto;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
+}
+
+
+/* Product Detail Container */
+.product-detail-container {
+  position: sticky;
+  top: 20px; /* Adjust this to control how far from the top the product details stay */
+  flex: 1;
+  padding: 20px;
+  gap: 20px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Ensures it stays above other content */
+  max-width: 650px;
+}
+
+.product-info {
+  max-width: 650px;
+  width: 100%;
+}
+
+/* Product Title and Price */
+.product-title {
+  font-size: 36px;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-size: 24px;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Quantity Selector and Add to Basket */
+.quantity-add-section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+}
+
+.quantity-btn {
+  background-color: #555555;
+  position: relative;
+  right: 10px;
+  width:50px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background-color: #ddd;
+}
+
+.quantity-number {
+    position: relative;
+    right: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.add-to-basket {
+  width: 100%;
+  position: relative;
+  background-color: #555555;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-basket:hover {
+  background-color: #ddd;
+}
+
+/* Policy Section */
+.policy-section {
+  margin-top: 30px;
+}
+
+.policy-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.policy-btn:hover {
+  background-color: #ddd;
+}
+
+.arrow {
+  font-size: 20px;
+}
+
+.policy-content {
+  display: none;
+  padding-left: 20px;
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  font-size: 15px;
+}
+
+.feature p {
+  font-size: 12px;
+  color: #555;
+}
+
+/* Horizontal line for separation */
+hr {
+  margin: 5px 0;
+  border: 1px solid #ddd;
+}
+
+/* Make sure the image doesn't overlap */
+.image {
+  position: relative;
+  height: 700px;
+}
+.productdescription{
+    position:relative;
+    left:40px;
+    top:80px;
+}
+.productinformation{
+    position:relative;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding:15px;
+    width:1350px;
+    font-size: 21px;
+    height:550px;
+    left:40px;
+    top:90px;
+}
+footer{
+      background-color: #555555;
+      position:relative;
+      top: 150px;
+      z-index: 1;
+      height:500px;
+    }
+    .footerposition{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:40px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerfollow{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:30px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerlinks{
+      font-family: signika;
+      letter-spacing: 2px;
+      color: white;
+      margin: 0 18px;
+      padding: 10px 0;
+      text-decoration: none;
+      position: relative;
+      left:540px;
+      top:50px;
+    }
+    .search-container {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align horizontally */
+  margin: 20px;
+    }
+    /* Input field styling */
+    .search-input {
+      border: none;           /* Remove all borders */
+      background-color: #555555;
+      color:white;
+      border-top: none;       /* Remove top border */
+      border-left: none;      /* Remove left border */
+      border-right: none;     /* Remove right border */
+      border-bottom: 2px solid white;  /* Add only bottom underline */
+      padding: 10px;          /* Add some padding inside the input */
+      position:relative;
+      top:35px;
+      font-size: 15px;        /* Adjust font size */
+      width: 300px;           /* Set width of the input */
+      outline: none;          /* Remove default focus outline */
+      text-align: center;
+    }
+    /* Button styling */
+    .search-button {
+      background-color: #555555;  /* Button background color */
+      border: 2px solid white; /* White border with 2px thickness */
+      position: relative;
+      width: 200px;
+      font-size: ;
+      height:40px;
+      color: #fff;  /* Button text color */
+      padding: 7px 20px;  /* Button padding */
+      margin-top: 55px;     /* Space between input and button */
+      cursor: pointer;     /* Change cursor to pointer on hover */
+      overflow: hidden; /* Hide the fill effect outside the button */
+      transition: color 0.4s ease; /* Smooth transition for text color */
+      z-index: 1; /* Ensure button text stays on top of the fill effect */
+    }
+    /* Create the filling effect using the ::after pseudo-element */
+    .search-button::after {
+      content: ''; /* Required for pseudo-element */
+      position: absolute;
+      top: 0;
+      left: -100%; /* Start from the left side (hidden) */
+      width: 100%; /* Full width */
+      height: 100%; /* Full height of the button */
+      background-color: white;
+      z-index: -1; /* Place the filling effect below the text */
+      transition: left 0.4s ease; /* Smooth transition for the fill effect */
+    }
+    /* Hover effect on the button */
+    .search-button:hover {
+      color: #555555; /* Change text color to #555555 when hovered */
+    }
+    /* Hover effect on the button's ::after pseudo-element */
+    .search-button:hover::after {
+      left: 0; /* Move the fill effect from left to right */
+    }
+    /* Placeholder styling */
+    .search-input::placeholder {
+      color: white; /* Change placeholder text color */
+      opacity: 1; /* Ensure placeholder text is fully opaque */
+    }
+  </style>
+</head>
+<body>
+    <div class="header-section">
+        <div id="eternity-title">
+        Eternity Gemstones
+        </div>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav justify-content-center mx-auto">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="index.html" id="home-link"
+                              data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="productspagenew.html" id="rubies-link" data-bs-toggle="dropdown"
+                              aria-expanded="false">Products</a>
+                          <div class="dropdownwrapper2">
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="productspagenew.html">Amethyst</a></li>
+                                  <li><a class="dropdown-item" href="productspagenew.html">Diamond</a></li>
+                                  <li><a class="dropdown-item" href="productspagenew.html">Ruby</a></li>
+                                  <li><a class="dropdown-item" href="productspagenew.html">Sapphire</a></li>
+                                  <li><a class="dropdown-item" href="productspagenew.html">Emerald</a></li>
+                              </ul>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="amethyst-link" data-bs-toggle="dropdown"
+                              aria-expanded="false">Amethyst</a>
+                          <div class="dropdownwrapper4">
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">Amethyst Type 1</a></li>
+                                  <li><a class="dropdown-item" href="#">Amethyst Type 2</a></li>
+                              </ul>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="diamonds-link" data-bs-toggle="dropdown"
+                              aria-expanded="false">Diamonds</a>
+                          <div class="dropdownwrapper5">
+                              <ul class="dropdown-menu">
+                                  <li><a class="dropdown-item" href="#">Diamond Type 1</a></li>
+                                  <li><a class="dropdown-item" href="#">Diamond Type 2</a></li>
+                              </ul>
+                          </div>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="contactpage.html" id="garnet-link" data-bs-toggle="dropdown"
+                              aria-expanded="false">Contact Us</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="Aboutus.html" id="sapphire-link" data-bs-toggle="dropdown"
+                              aria-expanded="false">About</a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+    </div>  
+    <div class="scroll-wrapper">
+        <div class="scroll-container">
+            <!-- Left Side: Scrolling Content -->
+            <div class="scrolling-side">
+                <div class="main-image-container">
+                  <img id="main-image" src="sapphirering.jpg" alt="Main Product Image" />
+                </div>
+                
+                <!-- Thumbnails placed below the main image -->
+                <div class="thumbnail-container">
+                  <img class="thumbnail" src="sapphirering.jpg" alt="Image 1" onclick="changeImage('sapphirering.jpg')" />
+                  <img class="thumbnail" src="sapphireringview2.jpg" alt="Image 2" onclick="changeImage('sapphireringview2.jpg')" />
+                  <img class="thumbnail" src="sapphireringview3.jpg" alt="Image 3" onclick="changeImage('sapphireringview3.jpg')" />
+                  <img class="thumbnail" src="sapphirering.jpg" alt="Image 1" onclick="changeImage('sapphirering.jpg')" />
+                  <img class="thumbnail" src="sapphireringview2.jpg" alt="Image 2" onclick="changeImage('sapphireringview2.jpg')" />
+                  <img class="thumbnail" src="sapphireringview3.jpg" alt="Image 3" onclick="changeImage('sapphireringview3.jpg')" />
+                  <img class="thumbnail" src="sapphireringview3.jpg" alt="Image 3" onclick="changeImage('sapphireringview3.jpg')" />
+                  <!-- Add more thumbnails as needed -->
+                </div>
+              </div>
+              
+
+            <div class="product-detail-container">
+                <div class="product-info">
+                    <!-- Product Title and Price -->
+                    <h1 class="product-title">1.40ct Blue Sapphire & Diamond </h1>
+                    <p class="product-price">£1499.99</p>
+            
+                    <!-- Quantity Selector and Add to Basket -->
+                    <div class="quantity-add-section">
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" id="decrease">-</button>
+                            <span id="quantity" class="quantity-number">1</span>
+                            <button class="quantity-btn" id="increase">+</button>
+                        </div>
+                        <button class="add-to-basket" id="add-to-basket-btn">Add to Basket</button>
+                    </div>
+            
+                    <!-- Shipping & Return Policy Buttons -->
+                    <div class="policy-section">
+                        <button class="policy-btn" id="shipping-policy-btn">Shipping Policy <span class="arrow">↓</span></button>
+                        <div class="policy-content" id="shipping-policy-content">
+                            <p>Shipping details: This product will be shipped via standard delivery within 5-7 business days.</p>
+                        </div>
+            
+                        <button class="policy-btn" id="return-policy-btn">Return Policy <span class="arrow">↓</span></button>
+                        <div class="policy-content" id="return-policy-content">
+                            <p>Returns accepted within 14 days, in original condition with packaging.</p>
+                        </div>
+                    </div>
+            
+                    <!-- Product Features -->
+                    <div class="product-features">
+                        <div class="feature">
+                            <h3>Secure Packaging</h3>
+                            <p>Securely packaged in a discreet envelope. Tracked, signed, and insured.</p>
+                        </div>
+                        <hr />
+                        <div class="feature">
+                            <h3>Return Policy</h3>
+                            <p>We accept returns after 14 days in original condition with the original box and paperwork.</p>
+                        </div>
+                        <hr />
+                        <div class="feature">
+                            <h3>Payment Options</h3>
+                            <p>Secure transactions. We accept payment through PayPal, all major credit/debit cards, and more.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+  <!-- Content after the scrollable area -->
+  <div class="image">
+    <h2 class="productdescription">Product Description</h2>
+    <div class="productinformation">
+        <p>
+            Fine Emerald Cut Green Sapphire And Diamond 18k Yellow Gold Three Stone Ring. 1.40ct Total.<br><br>
+
+Fine 1.08 carat natural sapphire with a beautiful vivid green colour.
+This sapphire also has an excellent emerald octagonal cut and excellent clarity. Very clean stone, VS.
+The sapphire measures 6.7x4.5mm.
+A fine top grade stone of the highest quality.<br><br>
+
+Accented by two tapered baguette cut natural white diamonds. E/F Colour VS/VVS clarity. Approx. 0.32ct. Top grade natural diamonds.<br><br>
+
+All set in a fine 18k yellow gold three stone ring.<br><br>
+
+Ring size UK M - US 6 - EU 52. The ring is re-sizeable. Please message us with any sizing requirement before purchase. We have an excellent team of craftsmen who can size rings to the highest standard.<br><br>
+
+Ring is brand new and never worn.<br>
+Made in the UK.<br>
+Fully hallmarked by Birmingham Assay Office.<br><br>
+
+All our jewellery is posted safely and securely in leatherette boxes.<br><br>
+
+All our photos are taken with a macro lens to show the true quality of our items.<br>
+Colours may of course vary slightly from pictures depending on device and colour settings. Although we endeavour to take the most 'real life' photos possible.<br>
+Duty and taxes may be required for international buyers.
+        </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footerposition">
+    <p><span style="font-family: 'Monotype Corsiva', cursive; font-size: 30px;position:relative;bottom:10px;">Sign up </span> <br> <span style="font-size: 20px;;">to our newsletter</span></p>
+    </div>
+    <div class="search-container">
+    <input type="email" class="search-input" placeholder="Your email">
+    <button class="search-button">Submit</button>
+    </div>          
+    <div class="footerfollow">
+    Follow Eternity Gemfields
+    </div>
+    <div>
+    <a class="footerlinks" href="#">Instagram</a><a class="footerlinks" href="#">Facebook</a><a class="footerlinks" href="#">Twitter</a>
+    </div>
+  </footer>
+</body>
+
+<script>
+ // Initialize the cart from localStorage (if available)
+let cart = JSON.parse(localStorage.getItem('cart')) || [];  // Start with an empty cart if none is found
+
+// Quantity Adjustments
+let quantity = 1;
+const quantityNumber = document.getElementById("quantity");
+
+document.getElementById("increase").addEventListener("click", function() {
+    quantity++;
+    quantityNumber.textContent = quantity;
+});
+
+document.getElementById("decrease").addEventListener("click", function() {
+    if (quantity > 1) {
+        quantity--;
+        quantityNumber.textContent = quantity;
+    }
+});
+
+// Function to handle the "Add to Basket" button on the product detail page
+function handleAddToBasket() {
+    const productName = document.querySelector('.product-title').textContent;
+    const productPrice = parseFloat(document.querySelector('.product-price').textContent.replace('£', ''));
+    const productQuantity = parseInt(document.querySelector('#quantity').textContent); // Get the quantity from the displayed value
+
+    // Check if the quantity is valid
+    if (productQuantity < 1) {
+        alert("Please select a valid quantity.");
+        return;
+    }
+
+    const product = { name: productName, price: productPrice, quantity: productQuantity };
+
+    // Add the product to the cart (check if it already exists, update if it does)
+    addToCart(product);
+}
+
+// Add the product to the cart
+function addToCart(product) {
+    // Check if product already exists in cart
+    const existingProductIndex = cart.findIndex(item => item.name === product.name);
+    
+    if (existingProductIndex > -1) {
+        // If product exists, update the quantity
+        cart[existingProductIndex].quantity += product.quantity;
+    } else {
+        // If product doesn't exist, add new product
+        cart.push(product);
+    }
+
+    // Save the updated cart to localStorage so it's persisted across page reloads
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(`${product.name} has been added to your cart.`);
+}
+
+// Event listener for Add to Basket button
+document.querySelector('.add-to-basket').addEventListener('click', handleAddToBasket);
+
+// Image Click Functionality
+const mainImage = document.getElementById('main-image'); // This is your main image that displays the large image
+const thumbnailImages = document.querySelectorAll('.thumbnail'); // All the thumbnail images
+
+thumbnailImages.forEach(image => {
+    image.addEventListener('click', function() {
+        // Change the main image to the clicked thumbnail's image source
+        mainImage.src = image.src;
+    });
+});
+
+  </script>
+  
+</html>
