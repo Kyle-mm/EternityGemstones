@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Gemstone Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .parallax {
+            background-image: url('https://source.unsplash.com/1600x900/?gemstone,nature');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 60vh;
+        }
+        .parallax-container {
+    background-image: url('parallax-bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  .gemstone-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .text-content {
+    width: 60%;
+  }
+
+  .image-content {
+    width: 35%;
+  }
+
+  .image-content img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .more-info {
+    text-align: center;
+    padding: 50px;
+    background: #f5f5f5;
+  }
+    </style>
+</head>
+<body class="bg-gray-100">
+    
+    <div class="parallax flex items-center justify-center">
+        <h1 class="text-white text-5xl font-bold bg-black/50 px-6 py-3 rounded-lg">How Gemstones Are Sourced</h1>
+    </div>
+
+    <section class="relative bg-white py-20 px-6 md:px-20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4">From Earth to Elegance</h2>
+            <p class="text-lg text-gray-700 leading-relaxed">Each gemstone embarks on an incredible journey, starting deep within the Earth. Through mining, careful selection, and expert craftsmanship, raw minerals are transformed into breathtaking jewels.</p>
+        </div>
+        <img src="https://source.unsplash.com/400x400/?raw-gemstone" 
+             alt="Raw Gemstone" 
+             class="absolute right-10 top-10 w-48 h-48 rounded-lg shadow-lg hidden md:block">
+    </section>
+    <section class="parallax-container">
+        <div class="parallax-content">
+          <h1>Discover the Journey of Gemstones</h1>
+          <p>From the depths of the Earth to the beauty in your hands.</p>
+        </div>
+      </section>
+      
+      <section class="gemstone-info">
+        <div class="text-content" data-aos="fade-right">
+          <h2>The Art of Gemstone Sourcing</h2>
+          <p>Each gemstone begins its journey deep underground, where intense heat and pressure give birth to stunning natural formations. These stones are then carefully mined, cut, and polished to bring out their true brilliance.</p>
+          <p>Our artisans meticulously inspect each gemstone, ensuring its authenticity and quality. From sourcing to craftsmanship, we are committed to ethical and sustainable practices.</p>
+        </div>
+        <div class="image-content" data-aos="fade-left">
+          <img src="gemstone.jpg" alt="Gemstone mining">
+        </div>
+      </section>
+      
+      <section class="more-info" data-aos="fade-up">
+        <h2>Why Choose Ethical Gemstones?</h2>
+        <p>Ethically sourced gemstones not only ensure fair wages for miners but also contribute to environmental conservation. By choosing responsibly sourced gems, you are supporting sustainable practices that benefit communities worldwide.</p>
+      </section>
+</body>
+<script>
+    AOS.init();
+  </script>
+  
+</html>

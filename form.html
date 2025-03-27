@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form</title>
+    <style>
+        *{
+        font-family: Signika;
+
+       }
+        body {
+            margin: 0;
+            padding: 0;
+            height:1100px;
+        }
+        .eternitygems{
+            position: absolute;
+            letter-spacing: 2px;
+            width:100%;
+            left:0px;
+            top:0px;
+            background-color: #555;
+        }
+        .eternitygems h1{
+            position: relative;
+            left:220px;
+            width:400px;
+            color: white;
+        }
+
+        .container {
+            margin-left:110px;
+            margin-top: 80px;
+            width: 40%;
+            padding: 2rem;
+        }
+
+        .section {
+            border: 1px solid #ddd;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .input-field:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .checkbox-container input {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .payment-options .input-field {
+            margin-top: 10px;
+        }
+
+        .card-details,
+        .paypal-details {
+            display: none;
+            margin-top: 1rem;
+        }
+
+        .radio-container input {
+            width: 16px;
+            height: 16px;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .radio-container {
+            margin-bottom: 1rem;
+        }
+
+        .payment-method {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Validate input patterns */
+        input[type="text"][id^="card-"] {
+            pattern: "^[0-9]{13,19}$"; /* Card number pattern */
+        }
+
+        input[type="text"][id="expiry-date"] {
+            pattern: "^(0[1-9]|1[0-2])\/([0-9]{2})$"; /* Expiry date format MM/YY */
+        }
+
+        input[type="text"][id="cvv"] {
+            pattern: "^[0-9]{3,4}$"; /* CVV pattern */
+        }
+        .cart-wrapper {
+    position: fixed;
+    right: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 110px;
+
+}
+
+.cart-preview {
+    width: 450px;
+    height: 450px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.cart-preview p{
+    font-weight: bold;
+    letter-spacing: 1px;
+    color:#333;
+}
+
+.cart-preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart-preview::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+/* New cart-footer styles */
+.cart-footer {
+    width: 450px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(201, 196, 196);
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-total p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.total-price {
+    font-size: 20px;
+    color: #2C7A7B;
+    font-weight: bold;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #1f5f5b;
+}
+
+/* Cart Item Styling */
+.cart-item {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 450px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    height: 80px;
+}
+
+.cartcontents {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+    height: 60px;
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    gap: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100px;
+    position: relative;
+}
+
+.cart-item-info p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Product name and other details styling */
+.product-name {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.code {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.instock {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #666;
+    width: 70px;
+    text-align: right;
+    flex-shrink: 0;
+    position: relative;
+    bottom: 30px;
+}
+
+/* Quantity Buttons */
+.quantity-btn, .quantity-btn1 {
+    border: none;
+    position: relative;
+    bottom: 10px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 18px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+}
+
+.quantity-btn1 {
+    background-color: #555;
+    color: white;
+}
+
+/* Quantity Text */
+.quantity {
+    font-size: 16px;
+    margin: 0 7px;
+    position: relative;
+    bottom: 10px;
+}
+
+/* Remove Button Styling */
+.remove-btn {
+    color: black;
+    border: none;
+    font-size: 12px;
+    background-color: white;
+    cursor: pointer;
+    position: absolute;
+    padding: 0;
+    top: 70px;
+    transform: translateY(0);
+}
+
+/* Cart Item Image */
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    bottom: 14px;
+    position: relative;
+}
+    </style>
+</head>
+
+<body>
+    <div class="eternitygems">
+        <h1>Eternity Gemstones</h1>
+    </div>
+    <div class="container">
+        <!-- Delivery Method Section -->
+        <div class="section">
+            <h3>Delivery Method</h3>
+            <p>Standard - Your order will be delivered within 3-5 days</p>
+        </div>
+
+        <!-- Billing Address Section -->
+        <div class="section">
+            <h3>Billing Address</h3>
+            <div class="checkbox-container">
+                <input type="checkbox" id="different-address">
+                <label for="different-address">Use a different billing address</label>
+            </div>
+
+            <div id="billing-address-fields" class="hidden">
+                <div>
+                    <label for="billing-address">Billing Address</label>
+                    <input type="text" id="billing-address" class="input-field" placeholder="Enter billing address">
+                </div>
+                <div>
+                    <label for="billing-city">City</label>
+                    <input type="text" id="billing-city" class="input-field" placeholder="Enter city">
+                </div>
+                <div>
+                    <label for="billing-zip">Zip Code</label>
+                    <input type="text" id="billing-zip" class="input-field" placeholder="Enter zip code">
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Options Section -->
+        <div class="section payment-options">
+            <h3>Payment Options</h3>
+
+            <!-- Credit / Debit Card Option -->
+            <div class="radio-container">
+                <input type="radio" name="payment-method" id="card-payment" checked>
+                <label for="card-payment">Credit / Debit Card</label>
+            </div>
+
+            <!-- PayPal Option -->
+            <div class="radio-container">
+                <input type="radio" name="payment-method" id="paypal-payment">
+                <label for="paypal-payment">PayPal</label>
+            </div>
+
+            <!-- Credit/Debit Card Details -->
+            <div class="card-details visible" id="card-details">
+                <div>
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" class="input-field" placeholder="Enter name on card" required>
+                </div>
+                <div>
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" class="input-field" placeholder="Enter card number" required>
+                </div>
+                <div style="display: flex; gap: 20px;">
+                    <div>
+                        <label for="expiry-date">Expiry Date</label>
+                        <input type="text" id="expiry-date" class="input-field" placeholder="MM/YY" required>
+                    </div>
+                    <div>
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" class="input-field" placeholder="Enter CVV" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PayPal Details -->
+            <div class="paypal-details" id="paypal-details">
+                <p>Please log in to your PayPal account to complete the payment.</p>
+            </div>
+        </div>
+    </div>
+    <div class="cart-wrapper">
+        <div class="cart-preview">
+        <p>Summary:</p>
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="cart-item-list"></div> <!-- Cart items container -->
+        </div>
+    
+        <!-- Total and Checkout Section (Moved Outside .cart-preview) -->
+        <div class="cart-footer">
+            <div class="cart-total">
+                <p>Total:</p>
+                <p class="total-price">£0.00</p> <!-- This will be updated dynamically -->
+            </div>
+    
+            <button class="checkout-btn">Checkout Securely</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Function to update the cart preview on the checkout page
+function updateCartPreview() {
+    const cartPreview = document.querySelector('.cart-item-list');
+    cartPreview.innerHTML = ''; // Clear any existing items
+
+    if (cart.length === 0) {
+        cartPreview.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.name.toLowerCase().replace(' ', '') + '.jpg'}" alt="${item.name}">
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            <div class="cartcontents">
+                <div class="cart-item-info">
+                    <p class="product-name">${item.name}</p>
+                    <p class="code">code: 101240</p>
+                    <p class="instock">In stock</p>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn1" onclick="increaseQuantity(${index})">+</button>
+                </div>
+                <p class="product-price">£${item.price}</p>
+            </div>
+        `;
+        cartPreview.appendChild(cartItem);
+    });
+
+    document.querySelector('.cart-total .total-price').textContent = `£${calculateTotalPrice()}`;
+}
+
+// Function to calculate total price
+function calculateTotalPrice() {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+}
+
+// Function to remove an item from the cart
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartPreview();
+}
+
+// Function to increase quantity
+function increaseQuantity(index) {
+    cart[index].quantity += 1;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartPreview();
+}
+
+// Function to decrease quantity
+function decreaseQuantity(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartPreview();
+    }
+}
+
+// Checkout button functionality
+document.querySelector('.checkout-btn').addEventListener('click', function (event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Stop submission if validation fails
+        alert("Please fill out all required fields correctly.");
+    } else {
+        alert("Proceeding to checkout");
+    }
+});
+
+
+        // Toggle the billing address fields based on checkbox
+        document.getElementById('different-address').addEventListener('change', function () {
+            const billingFields = document.getElementById('billing-address-fields');
+            if (this.checked) {
+                billingFields.classList.remove('hidden');
+            } else {
+                billingFields.classList.add('hidden');
+            }
+        });
+
+        // Toggle visibility for payment options
+        const cardPaymentOption = document.getElementById('card-payment');
+        const paypalPaymentOption = document.getElementById('paypal-payment');
+        const cardDetails = document.getElementById('card-details');
+        const paypalDetails = document.getElementById('paypal-details');
+
+        cardPaymentOption.addEventListener('change', function () {
+            if (this.checked) {
+                cardDetails.classList.add('visible');
+                paypalDetails.classList.remove('visible');
+            }
+        });
+
+        paypalPaymentOption.addEventListener('change', function () {
+            if (this.checked) {
+                cardDetails.classList.remove('visible');
+                paypalDetails.classList.add('visible');
+            }
+        });
+
+        window.onload = function () {
+    updateCartPreview();
+};
+// JavaScript to handle cart sticking behavior
+window.addEventListener('scroll', function () {
+    const cartWrapper = document.querySelector('.cart-wrapper');
+    const container = document.querySelector('.container');
+
+    if (!cartWrapper || !container) return; // Prevent errors if elements are missing
+
+    const formRect = container.getBoundingClientRect();
+    const cartHeight = cartWrapper.offsetHeight; // Height of the cart
+    const viewportTop = window.scrollY; // Current scroll position
+
+    // Get the position of the form's bottom and the cart's bottom
+    const formBottom = formRect.bottom + viewportTop; // Form's bottom relative to the document
+    const cartBottom = viewportTop + 110 + cartHeight; // Cart's bottom relative to the document (starting from 110px)
+
+    // Check if the cart has scrolled past the form's bottom
+    if (cartBottom >= formBottom - 67) { // Stop 20px before form's bottom
+        cartWrapper.style.position = 'absolute';
+        cartWrapper.style.top = `${formBottom - cartHeight - 67}px`; // Stop cart 20px before form's bottom
+    } else {
+        cartWrapper.style.position = 'fixed';
+        cartWrapper.style.top = '110px'; // Keep cart sticky when above form
+    }
+});
+    </script>
+
+</body>
+
+</html>

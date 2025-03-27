@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+    body {
+      margin: 0;
+    }
+    .header-section {
+      background-color: white;
+      position: sticky;
+      top: 10px; /* Keeps this section fixed at the top of the viewport */
+      z-index: 10; /* Ensures it's on top of the next section */
+      width: 100%; /* Ensure it spans the entire width */
+      padding-bottom: 20px; /* Optional space between header and next section */
+    }
+    #eternity-title {
+      position: relative;
+      top: 8px;
+      text-align: center;
+      font-family: Signika;
+      color: black;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 30px;
+    }
+/* Base navbar styling */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    list-style: none; /* Ensures no bullet points appear */
+
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 30px;
+    font-family: Signika;
+    padding: 10px 0;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 75%; /* Place it directly below the parent item */
+    left: 0; /* Align dropdown to the left of the page */
+    width: 93.7%; /* Span the entire width of the page */
+    display: flex; /* Display dropdown items in a row */
+    align-items: center;
+    padding: 10px 0; /* Adjust padding for better spacing */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern design */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000; /* Ensure it is above other content */
+    list-style: none; /* Remove bullet points */
+    border: none; /* Remove border for a cleaner look */
+}
+
+/* Show dropdown menu on hover */
+.navbar-nav .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+    border-bottom: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+
+
+}
+
+/* Dropdown items styling */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #555555;
+    font-family: Signika;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px; /* Adjust padding for consistent spacing */
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 10px; /* Control horizontal spacing between links */
+}
+
+/* Hover effect on dropdown items */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #555555;
+    color: white;
+}
+.nav-item .dropdown-menu {
+    left: 0; /* Ensure the dropdown starts at the parent link */
+    padding-left: 90px; /* Add padding to align with the Home link */
+}
+
+
+/* Remove bullet points in the dropdown menu */
+.navbar-nav .dropdown-menu {
+    list-style: none; /* Ensures no bullet points appear */
+}
+
+.welcometoeternitygemstones {
+  position: relative;
+  top: 50px;
+}
+    .active-line {
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      height: 3px;
+      background-color: black;
+      transition: left 0.3s ease, width 0.3s ease;
+    }
+    footer{
+      background-color: #555555;
+      position:relative;
+      top:450px;
+      height:500px;
+    }
+    .footerposition{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:40px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerfollow{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:30px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerlinks{
+      font-family: signika;
+      letter-spacing: 2px;
+      color: white;
+      margin: 0 18px;
+      padding: 10px 0;
+      text-decoration: none;
+      position: relative;
+      left:540px;
+      top:50px;
+    }
+    .search-container {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align horizontally */
+  margin: 20px;
+    }
+    /* Input field styling */
+    .search-input {
+      border: none;           /* Remove all borders */
+      background-color: #555555;
+      color:white;
+      border-top: none;       /* Remove top border */
+      border-left: none;      /* Remove left border */
+      border-right: none;     /* Remove right border */
+      border-bottom: 2px solid white;  /* Add only bottom underline */
+      padding: 10px;          /* Add some padding inside the input */
+      position:relative;
+      top:30px;
+      font-size: 16px;        /* Adjust font size */
+      width: 300px;           /* Set width of the input */
+      outline: none;          /* Remove default focus outline */
+      text-align: center;
+    }
+    /* Button styling */
+    .search-button {
+      background-color: #555555;  /* Button background color */
+      border: 2px solid white; /* White border with 2px thickness */
+      position: relative;
+      top:15px;
+      width: 200px;
+      color: #fff;  /* Button text color */
+      padding: 7px 20px;  /* Button padding */
+      margin-top: 60px;     /* Space between input and button */
+      cursor: pointer;     /* Change cursor to pointer on hover */
+      overflow: hidden; /* Hide the fill effect outside the button */
+      transition: color 0.4s ease; /* Smooth transition for text color */
+      z-index: 1; /* Ensure button text stays on top of the fill effect */
+    }
+    /* Create the filling effect using the ::after pseudo-element */
+    .search-button::after {
+      content: ''; /* Required for pseudo-element */
+      position: absolute;
+      top: 0;
+      left: -100%; /* Start from the left side (hidden) */
+      width: 100%; /* Full width */
+      height: 100%; /* Full height of the button */
+      background-color: white;
+      z-index: -1; /* Place the filling effect below the text */
+      transition: left 0.4s ease; /* Smooth transition for the fill effect */
+    }
+    /* Hover effect on the button */
+    .search-button:hover {
+      color: #555555; /* Change text color to #555555 when hovered */
+    }
+    /* Hover effect on the button's ::after pseudo-element */
+    .search-button:hover::after {
+      left: 0; /* Move the fill effect from left to right */
+    }
+    /* Placeholder styling */
+    .search-input::placeholder {
+      color: white; /* Change placeholder text color */
+      opacity: 1; /* Ensure placeholder text is fully opaque */
+    }
+    .container {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .filters {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 20px;
+        width: 20%;
+        box-sizing: border-box;  /* Ensure padding doesn't affect layout */
+    }
+
+    .filters .selected-filters {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    }
+
+    .filters .selected-filters .filter-tag {
+    background-color: #555555;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    }
+
+    .filters .selected-filters .filter-tag button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    }
+
+    .filters .filter-group {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0; /* Divider line */
+    padding-bottom: 20px;
+    }
+
+    .filters label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    cursor: pointer;
+    }
+
+    .filters input[type="checkbox"] {
+    margin-right: 10px;
+    }
+    /* Sort Container Styling */
+    .sort-container {
+        position: relative;
+        margin-right:18px;
+        top:350px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-family: 'Arial', sans-serif;
+        padding: 10px 15px;
+    }
+    /* Sort Label Styling */
+    .sort-label {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+    /* Dropdown Styling */
+    .sort-dropdown {
+        font-size: 16px;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none; /* Remove the border */
+        outline: none; /* Remove the focus outline */
+        cursor: pointer; /* Makes it more visually consistent */
+        width: 110px;
+    }
+    .sort-dropdown:hover {
+        border-color: #1b1c1e;
+    }
+
+
+    .products-divider {
+        border: none;
+        border-top: 1px solid black; /* Adjust color as needed */
+        width: 1050px;
+        position: relative;
+        top:350px;
+        left: 345px; /* Ensures alignment with products */
+    }
+    .products {
+        margin-top: 350px;
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .product-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .product-card img {
+      position: relative;
+      right:10px;
+    object-fit: cover;
+    border-radius: 4px;
+    }
+    .product-card h4 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    }
+    .product-card p {
+    font-size: 14px;
+    color: #666;
+    }
+    .product-card button {
+    background-color: #555555;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    .product-card button:hover {
+    background-color: black;
+    color: white;
+    }
+    .newin{
+        position:absolute;
+        left:400px;
+        top:190px;
+        color:white;
+        z-index: 10;
+    }
+    .newinin{
+        position: absolute;
+        left:400px;
+        top:270px;
+        color:white;
+        z-index: 10;
+    }
+    .biege{
+        position:absolute;
+        left:340px;
+        width:1050px;
+        height:330px;
+    }
+    svg{
+    width: 30px;
+}
+.icon-cart{
+    position: relative;
+}
+.icon-cart span{
+    position: absolute;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    top: 50%;
+    right: -20px;
+}
+/* cart */
+.cartTab{
+    width: 400px;
+    background-color: #353432;
+    color: #eee;
+    position: fixed;
+    top: 0;
+    right: -400px;
+    bottom: 0;
+    display: grid;
+    grid-template-rows: 70px 1fr 70px;
+    transition: .5s;
+}
+body.showCart .cartTab{
+    right: 0;
+}
+body.showCart .container{
+    transform: translateX(-250px);
+}
+.cartTab h1{
+    padding: 20px;
+    margin: 0;
+    font-weight: 300;
+}
+.cartTab .btn{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.cartTab button{
+    background-color: #E8BC0E;
+    border: none;
+    font-family: Poppins;
+    font-weight: 500;
+    cursor: pointer;
+}
+.cartTab .close{
+    background-color: #eee;
+}
+.listCart .item img{
+    width: 100%;
+}
+.listCart .item{
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+.listCart .quantity span{
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+    color: #555;
+    cursor: pointer;
+}
+.listCart .quantity span:nth-child(2){
+    background-color: transparent;
+    color: #eee;
+    cursor: auto;
+}
+.listCart .item:nth-child(even){
+    background-color: #eee1;
+}
+.listCart{
+    overflow: auto;
+}
+.listCart::-webkit-scrollbar{
+    width: 0;
+}
+@media only screen and (max-width: 992px) {
+    .listProduct{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* mobile */
+@media only screen and (max-width: 768px) {
+    .listProduct{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+    <div class="header-section">
+        <div id="eternity-title">
+        Eternity Gemstones
+        </div>
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+              <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav justify-content-center mx-auto">
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="test.html" id="home-link" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                  <div class="dropdownwrapper">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Sub-item 1</a></li>
+                      <li><a class="dropdown-item" href="#">Sub-item 2</a></li>
+                      <li><a class="dropdown-item" href="#">Sub-item 2</a></li>
+                      <li><a class="dropdown-item" href="#">Sub-item 2</a></li>
+  
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="rubies-link" data-bs-toggle="dropdown" aria-expanded="false">Rubies</a>
+                  <div class="dropdownwrapper2">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Ruby Type 1</a></li>
+                      <li><a class="dropdown-item" href="#">Ruby Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="emeralds-link" data-bs-toggle="dropdown" aria-expanded="false">Emeralds</a>
+                  <div class="dropdownwrapper3"> 
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Emerald Type 1</a></li>
+                      <li><a class="dropdown-item" href="#">Emerald Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="amethyst-link" data-bs-toggle="dropdown" aria-expanded="false">Amethyst</a>
+                  <div class="dropdownwrapper4">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Amethyst Type 1</a></li>
+                      <li><a class="dropdown-item" href="#">Amethyst Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="diamonds-link" data-bs-toggle="dropdown" aria-expanded="false">Diamonds</a>
+                  <div class="dropdownwrapper5">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Diamond Type 1</a></li>
+                      <li><a class="dropdown-item" href="#">Diamond Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="garnet-link" data-bs-toggle="dropdown" aria-expanded="false">Garnet</a>
+                      <div class="dropdownwrapper6">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Garnet Type 1</a></li>
+                      <li><a class="dropdown-item" href="#">Garnet Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+                  <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="sapphire-link" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                  <div class="dropdownwrapper7">
+                      <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="Aboutus.html">About</a></li>
+                      <li><a class="dropdown-item" href="#">Sapphire Type 2</a></li>
+                      </ul>
+                  </div>
+                  </li>
+              </ul>
+              </div>
+          </div>
+        </nav>
+    </div>
+    <h1 style="font-family: Signika;" class="newin">NEW IN</h1>
+    <p class="newinin"><span style="font-family: 'Monotype Corsiva', cursive;font-size: 20px;">Explore the 
+        unparalleled craftsmanship, stunning color,
+        and radiant shine of gemstones <br> </span>
+        <span style="position:absolute;top:50px;font-family: Signika;">Whether you're searching for that perfect statement piece or 
+            <br> a subtle addition to your jewelry box, our new arrivals 
+        offer something truly special.</span>
+    </p>
+    <img class="biege" src="biegetest.jpeg" alt="">
+    <!-- sort by filter-->
+    <div class="sort-container">
+        <label for="sort-options" class="sort-label">Sort By:</label>
+        <select id="sort-options" class="sort-dropdown" onchange="sortProducts()">
+          <option value="best-selling">Best Selling</option>
+          <option value="price-low-high">Price, low to high</option>
+          <option value="price-high-low">Price, high to low</option>
+          <option value="alphabetical-az">Alphabetically, A-Z</option>
+          <option value="alphabetical-za">Alphabetically, Z-A</option>
+          <option value="date-old-new">Date, old to new</option>
+          <option value="date-new-old">Date, new to old</option>
+        </select>
+    </div>
+
+    <hr class="products-divider">
+
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters">
+            <h3>Filters</h3>   
+            <!-- Selected Filters Area -->
+            <div class="selected-filters" id="selected-filters"></div>
+            <div class="filter-group">
+                <h4>Categories</h4>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Category: Rubies', this)"> Rubies</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Category: Emeralds', this)"> Emeralds</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Category: Diamonds', this)"> Diamonds</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Category: Sapphires', this)"> Sapphires</label>
+            </div>
+            <div class="divider"></div>
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Price: £0 - £100', this)"> £0 - £100</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Price: £100 - £500', this)"> £100 - £500</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Price: £500 - £1000', this)"> £500 - £1000</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Price: £1000+', this)"> £1000+</label>
+            </div>
+            <div class="divider"></div>
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Brand: Eternity', this)"> Eternity</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Brand: Legacy', this)"> Legacy</label>
+                <label><input type="checkbox" onclick="updateSelectedFilters('Brand: Premium Gems', this)"> Premium Gems</label>
+            </div>
+        </div>
+        <div class="cartTab">
+          <h1>Shopping Cart</h1>
+          <div class="listCart"></div>
+          <div class="btn">
+              <button class="close">CLOSE</button>
+              <button class="checkOut">Check Out</button>
+          </div>
+      </div>
+        <div class="icon-cart">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+          </svg>
+          <span>0</span>
+      </div>
+        <!-- Products Section -->
+        <div class="products"></div>
+    </div>
+
+
+    <footer>
+        <div class="footerposition">
+        <p><span style="font-family: 'Monotype Corsiva', cursive; font-size: 30px;">Sign up </span> <br> <span style="font-size: 20px;;">to our newsletter</span></p>
+        </div>
+        <div class="search-container">
+        <input type="email" class="search-input" placeholder="Your email">
+        <button class="search-button">Submit</button>
+        </div>          
+        <div class="footerfollow">
+        Follow Eternity Gemfields
+        </div>
+        <div>
+        <a class="footerlinks" href="#">Instagram</a><a class="footerlinks" href="#">Facebook</a><a class="footerlinks" href="#">Twitter</a>
+        </div>
+    </footer>
+
+    <!--Adding products-->
+    <script>
+   const products = [
+    { name: "Ruby Necklace", category: "Rubies", price: 250, brand: "Eternity", element: null, sold: 120, date: '2023-10-01', image: "rubynecklace.jpg", button:"detailedproductspagetest.html" },
+    { name: "Emerald Ring", category: "Emeralds", price: 400, brand: "Legacy", element: null, sold: 85, date: '2023-09-15', image: "emeraldring.jpg" },
+    { name: "Diamond Earrings", category: "Diamonds", price: 800, brand: "Premium Gems", element: null, sold: 45, date: '2023-11-05', image: "diamondearrings.jpg" },
+    { name: "Sapphire Bracelet", category: "Sapphires", price: 350, brand: "Eternity", element: null, sold: 70, date: '2023-10-10', image: "sapphirebracelet.jpg" },
+    { name: "Ruby Earrings", category: "Rubies", price: 150, brand: "Legacy", element: null, sold: 60, date: '2023-09-20', image: "rubyearrings.jpg" },
+    { name: "Emerald Necklace", category: "Emeralds", price: 500, brand: "Premium Gems", element: null, sold: 40, date: '2023-11-01', image: "emeraldknecklace.jpg" },
+    { name: "Diamond Ring", category: "Diamonds", price: 1200, brand: "Eternity", element: null, sold: 30, date: '2023-10-25', image: "diamondringn.jpg" },
+    { name: "Sapphire Necklace", category: "Sapphires", price: 400, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "sapphirenecklacene.jpg" },
+    { name: "Ruby Ring", category: "Sapphires", price: 2300, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "rubyring.jpg" },
+    { name: "Emerald Earrings", category: "Sapphires", price: 900, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "emeraldearring.jpg" },
+    { name: "Diamond Necklace", category: "Sapphires", price: 2000, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "diamondnecklace.jpg" },
+    { name: "Sapphire Ring", category: "Sapphires", price: 1800, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "saphhirering.jpg" },
+    { name: "Sapphire Earrings", category: "Sapphires", price: 540, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "sapphireearrings.jpg" },
+
+
+];
+
+
+window.onload = () => {
+    const productsContainer = document.querySelector('.products');
+    products.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.classList.add('product-card');
+        productCard.innerHTML = `
+            <img src="${product.image}" alt="${product.name}">
+            <h4>${product.name}</h4>
+            <p>£${product.price}</p>
+            <button>Add to Cart</button>
+        `;
+        product.element = productCard;
+        productsContainer.appendChild(productCard);
+    });
+};
+
+
+
+    // Update selected filters
+    function updateSelectedFilters(filterLabel, checkbox) {
+    const selectedFiltersContainer = document.getElementById('selected-filters');
+    
+    // Create a filter tag if it's checked
+    if (checkbox.checked) {
+        const filterTag = document.createElement('div');
+        filterTag.classList.add('filter-tag');
+        filterTag.innerHTML = `${filterLabel} <button onclick="removeFilter(this)">x</button>`;
+        
+        // Store the checkbox reference in the filter tag
+        filterTag.checkbox = checkbox;
+
+        selectedFiltersContainer.appendChild(filterTag);
+    } else {
+        // If checkbox is unchecked, ensure the tag is removed
+        const tagToRemove = Array.from(selectedFiltersContainer.children)
+        .find(tag => tag.innerText.includes(filterLabel));
+        if (tagToRemove) {
+        selectedFiltersContainer.removeChild(tagToRemove);
+        }
+    }
+
+    // Filter products
+    filterProducts();
+    }
+
+    // Remove a filter when clicked above and uncheck the corresponding checkbox
+    function removeFilter(button) {
+    const filterTag = button.parentElement;
+    
+    // Access the checkbox from the filter tag and uncheck it
+    if (filterTag.checkbox) {
+        filterTag.checkbox.checked = false;  // Uncheck the filter's checkbox
+    }
+
+    // Remove the filter tag
+    filterTag.remove();
+
+    // Update product display
+    filterProducts();
+    }
+
+    // Filter products based on selected filters
+    function filterProducts() {
+    const selectedCategories = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'category')
+        .map(input => input.value);
+
+    const selectedPriceRanges = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'price')
+        .map(input => input.value);
+
+    const selectedBrands = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'brand')
+        .map(input => input.value);
+
+    // Hide or show products based on filters
+    products.forEach(product => {
+        const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+        const priceMatch = selectedPriceRanges.length === 0 || selectedPriceRanges.some(price => {
+        if (price === '$0 - $100') return product.price <= 100;
+        if (price === '$100 - $500') return product.price > 100 && product.price <= 500;
+        if (price === '$500 - $1000') return product.price > 500 && product.price <= 1000;
+        return product.price > 1000;
+        });
+        const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+
+        if (categoryMatch && priceMatch && brandMatch) {
+        product.element.style.display = 'block';  // Show the product
+        } else {
+        product.element.style.display = 'none';   // Hide the product
+        }
+    });
+    }
+
+    </script>
+    <!--sort by filter-->
+    <script>
+        function sortProducts() {
+  const sortOption = document.getElementById('sort-options').value;
+
+  // Get product container and product elements
+  const productsContainer = document.querySelector('.products');
+  const productCards = Array.from(productsContainer.children);
+
+  // Sort based on the selected option
+  productCards.sort((a, b) => {
+    const productA = products.find(p => p.name === a.querySelector('h4').textContent);
+    const productB = products.find(p => p.name === b.querySelector('h4').textContent);
+
+    switch (sortOption) {
+      case 'price-low-high':
+        return productA.price - productB.price;
+      case 'price-high-low':
+        return productB.price - productA.price;
+      case 'alphabetical-az':
+        return productA.name.localeCompare(productB.name);
+      case 'alphabetical-za':
+        return productB.name.localeCompare(productA.name);
+      case 'date-old-new':
+        return new Date(productA.date) - new Date(productB.date);
+      case 'date-new-old':
+        return new Date(productB.date) - new Date(productA.date);
+      case 'best-selling':
+        return productB.sold - productA.sold; // Assuming you have a `sold` property
+      default:
+        return 0;
+    }
+  });
+
+  // Re-render sorted products
+  productCards.forEach(card => productsContainer.appendChild(card));
+}
+
+    </script>
+</html>

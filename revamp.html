@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Cards</title>
+    <style>
+        /* *{border: 1px solid black;} */
+       
+
+        .products-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 20px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            background-color: white;
+        }
+
+        .products-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .product-card {
+            min-width: 400px;
+            max-width: 400px;
+            height: 500px;
+            background-color: white;
+            padding: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            position: relative;
+            overflow: hidden;
+            margin-right: 20px; /* Space between cards */
+            border-right: 1px solid #ddd; /* Inner border separating cards */
+        }
+
+        /* Remove the border from the image container */
+        .product-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+            transition: transform 0.3s ease-in-out; /* Add transition here */
+
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+
+        .product-info {
+            padding: 10px;
+            position: relative;
+            top:15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .view-more {
+            opacity: 0;
+            visibility: hidden;
+            position: relative;
+            right:140px;
+            top:30px;
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+        .view-more::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+            margin-top: 5px;
+            position: absolute;
+            bottom: -6px; /* Position the line just below the text */
+            left: 40%;
+        }
+
+        /* Hover Effect */
+        .product-card:hover .product-image img {
+            transform: scale(1.2); /* Zoom in image */
+            filter: brightness(90%); /* Darken image */
+        }
+        .product-card:hover .product-image {
+    transform: translateY(-30px); /* Moves the bottom border up */
+    transition: transform 0.3s ease-in-out;
+}
+
+        .product-card:hover .product-info {
+            transform: translateY(-30px); /* Move title and description up */
+        }
+
+        .product-card:hover .view-more {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(-10px); /* Fade in and move up */
+        }
+        .product-card:hover .view-more::after {
+            width: 21%; /* Draw the line when the button is visible */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="products-container">
+        <div class="product-card">
+            <div class="product-image">
+                <img src="sapphirering.jpg" alt="Sapphire Ring">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Sapphire Ring</div>
+                <div class="product-description">A beautiful sapphire gemstone set in a handcrafted ring.</div>
+                <div class="view-more">View More</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="diamondring.jpg" alt="Diamond Ring">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Diamond Ring</div>
+                <div class="product-description">A stunning diamond ring with a sleek, elegant design.</div>
+                <div class="view-more">View More</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="diamondring1.png" alt="Luxury Diamond Ring">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Luxury Diamond Ring</div>
+                <div class="product-description">An exclusive design featuring a high-quality diamond.</div>
+                <div class="view-more">View More</div>
+            </div>
+        </div>
+        <div class="product-card">
+            <div class="product-image">
+                <img src="emeraldring2.jpg" alt="Emerald Ring">
+            </div>
+            <div class="product-info">
+                <div class="product-title">Emerald Ring</div>
+                <div class="product-description">A vibrant emerald set in a sophisticated gold band.</div>
+                <div class="view-more">View More</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<style>
+      /*   *{border: 1px solid black;}  */
+    body {
+      margin: 0;
+    }
+    .header-section {
+      background-color: white;
+      position: relative;
+      top: 10px; /* Keeps this section fixed at the top of the viewport */
+      z-index: 10; /* Ensures it's on top of the next section */
+      width: 100%; /* Ensure it spans the entire width */
+      padding-bottom: 20px; /* Optional space between header and next section */
+    }
+    #eternity-title {
+      position: relative;
+      top: 8px;
+      text-align: center;
+      font-family: Signika;
+      color: black;
+      font-weight: bold;
+      letter-spacing: 2px;
+      font-size: 30px;
+    }
+/* Base navbar styling */
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    list-style: none; /* Ensures no bullet points appear */
+
+}
+
+.navbar-nav .nav-link {
+    color: black;
+    margin: 0 40px;
+    font-family: Signika;
+    padding: 10px 0;
+    text-decoration: none;
+    position: relative;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+/* Dropdown menu styling */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 75%; /* Place it directly below the parent item */
+    left: 0; /* Align dropdown to the left of the page */
+    width: 93.7%; /* Span the entire width of the page */
+    display: flex; /* Display dropdown items in a row */
+    align-items: center;
+    padding: 10px 0; /* Adjust padding for better spacing */
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for modern design */
+    opacity: 0; /* Initially hidden */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000; /* Ensure it is above other content */
+    list-style: none; /* Remove bullet points */
+    border: none; /* Remove border for a cleaner look */
+}
+
+/* Show dropdown menu on hover */
+.navbar-nav .nav-item:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    border-top: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+    border-bottom: 1px solid rgb(151, 141, 141); /* Line that separates navbar and dropdown */
+
+
+}
+
+/* Dropdown items styling */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: #555555;
+    font-family: Signika;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px; /* Adjust padding for consistent spacing */
+    border-radius: 5px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0 35px; /* Control horizontal spacing between links */
+}
+
+/* Hover effect on dropdown items */
+.navbar-nav .dropdown-menu .dropdown-item:hover {
+    background-color: #555555;
+    color: white;
+}
+.nav-item .dropdown-menu {
+    left: 0; /* Ensure the dropdown starts at the parent link */
+    padding-left: 90px; /* Add padding to align with the Home link */
+}
+
+
+/* Remove bullet points in the dropdown menu */
+.navbar-nav .dropdown-menu {
+    list-style: none; /* Ensures no bullet points appear */
+}
+
+.welcometoeternitygemstones {
+  position: relative;
+  top: 50px;
+}
+
+    footer{
+      background-color: #555555;
+      position:relative;
+      top: 150px;
+      z-index: 1;
+      height:500px;
+    }
+    .footerposition{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:40px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerfollow{
+      font-family: Signika;
+      position:relative;
+      text-align: center;
+      padding:5px;
+      top:30px;
+      color:white;
+      letter-spacing: 2px;
+    }
+    .footerlinks{
+      font-family: signika;
+      letter-spacing: 2px;
+      color: white;
+      margin: 0 18px;
+      padding: 10px 0;
+      text-decoration: none;
+      position: relative;
+      left:540px;
+      top:50px;
+    }
+    .search-container {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  align-items: center;    /* Center align horizontally */
+  margin: 20px;
+    }
+    /* Input field styling */
+    .search-input {
+      border: none;           /* Remove all borders */
+      background-color: #555555;
+      color:white;
+      border-top: none;       /* Remove top border */
+      border-left: none;      /* Remove left border */
+      border-right: none;     /* Remove right border */
+      border-bottom: 2px solid white;  /* Add only bottom underline */
+      padding: 10px;          /* Add some padding inside the input */
+      position:relative;
+      top:35px;
+      font-size: 15px;        /* Adjust font size */
+      width: 300px;           /* Set width of the input */
+      outline: none;          /* Remove default focus outline */
+      text-align: center;
+    }
+    /* Button styling */
+    .search-button {
+      background-color: #555555;  /* Button background color */
+      border: 2px solid white; /* White border with 2px thickness */
+      position: relative;
+      width: 200px;
+      font-size: ;
+      height:40px;
+      color: #fff;  /* Button text color */
+      padding: 7px 20px;  /* Button padding */
+      margin-top: 55px;     /* Space between input and button */
+      cursor: pointer;     /* Change cursor to pointer on hover */
+      overflow: hidden; /* Hide the fill effect outside the button */
+      transition: color 0.4s ease; /* Smooth transition for text color */
+      z-index: 1; /* Ensure button text stays on top of the fill effect */
+    }
+    /* Create the filling effect using the ::after pseudo-element */
+    .search-button::after {
+      content: ''; /* Required for pseudo-element */
+      position: absolute;
+      top: 0;
+      left: -100%; /* Start from the left side (hidden) */
+      width: 100%; /* Full width */
+      height: 100%; /* Full height of the button */
+      background-color: white;
+      z-index: -1; /* Place the filling effect below the text */
+      transition: left 0.4s ease; /* Smooth transition for the fill effect */
+    }
+    /* Hover effect on the button */
+    .search-button:hover {
+      color: #555555; /* Change text color to #555555 when hovered */
+    }
+    /* Hover effect on the button's ::after pseudo-element */
+    .search-button:hover::after {
+      left: 0; /* Move the fill effect from left to right */
+    }
+    /* Placeholder styling */
+    .search-input::placeholder {
+      color: white; /* Change placeholder text color */
+      opacity: 1; /* Ensure placeholder text is fully opaque */
+    }
+    .container {
+        display: flex;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .filters {
+        background-color: #ffffff;
+        position:relative;
+        bottom:50px;
+        border-radius: 8px;
+        padding: 20px;
+        width: 300px;
+        box-sizing: border-box;  /* Ensure padding doesn't affect layout */
+    }
+
+    .filters .selected-filters {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    }
+
+    .filters .selected-filters .filter-tag {
+    background-color: #555555;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    }
+
+    .filters .selected-filters .filter-tag button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    }
+
+    .filters .filter-group {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0; /* Divider line */
+    padding-bottom: 20px;
+    }
+
+    .filters label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+    cursor: pointer;
+    }
+
+    .filters input[type="checkbox"] {
+    margin-right: 10px;
+    }
+
+    
+    .products {
+        flex-grow: 1;
+        position: relative;
+        top:330px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .product-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    .product-card img {
+      position: relative;
+      right:10px;
+    object-fit: cover;
+    border-radius: 4px;
+    }
+    .product-card h4 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+    }
+    .product-card p {
+    font-size: 14px;
+    color: #666;
+    }
+    .product-card button {
+    background-color: #555555;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    .product-card button:hover {
+    background-color: black;
+    color: white;
+    }
+    .newin{
+        position:absolute;
+        left:400px;
+        top:190px;
+        color:white;
+        z-index: 10;
+    }
+    .newinin{
+        position: absolute;
+        left:400px;
+        top:270px;
+        color:white;
+        z-index: 10;
+    }
+    .biege{
+        position:absolute;
+        left:340px;
+        width:1050px;
+        height:330px;
+    }
+    .products-divider {
+        border: none;
+        border-top: 1px solid black; /* Adjust color as needed */
+        width: 1030px;
+        position: relative;
+        top:315px;
+        left: 145px; /* Ensures alignment with products */
+    }
+       /* Sort Container Styling */
+       .sort-container {
+        position: relative;
+        margin-right:80px;
+        top:350px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-family: 'Arial', sans-serif;
+        padding: 10px 15px;
+    }
+    /* Sort Label Styling */
+    .sort-label {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #333;
+    }
+    /* Dropdown Styling */
+    .sort-dropdown {
+        font-size: 16px;
+        border-radius: 4px;
+        background-color: #fff;
+        color: #333;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: none; /* Remove the border */
+        outline: none; /* Remove the focus outline */
+        cursor: pointer; /* Makes it more visually consistent */
+        width: 110px;
+    }
+    .sort-dropdown:hover {
+        border-color: #1b1c1e;
+    }
+    svg{
+    width: 30px;
+    position:relative;
+    
+
+}
+
+/* Cart Container to group both icon and preview */
+.cart-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Icon Cart Styling */
+.icon-cart{
+    position: relative;
+    left:1350px;
+    top:308px;
+    width:70px;
+    cursor: pointer; /* Make sure the cursor changes to indicate it’s clickable */
+}
+
+/* Icon Cart Badge (Cart Count) */
+.icon-cart span {
+    position: absolute;
+    background-color: red;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    left: 30%;
+    top: 60%;
+}
+
+/* Cart Preview Styling */
+.cart-preview {
+            position: absolute;
+            left:960px;
+            top: 350px;
+            width: 400px;
+            height: 550px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            z-index: 1000;
+            visibility: hidden; /* Initially hidden */
+            opacity: 0;
+            transition: visibility 0s 0.3s, opacity 0.3s ease, transform 0.3s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .cart-preview::-webkit-scrollbar {
+    width: 8px; /* Adjust scrollbar width */
+}
+
+.cart-preview::-webkit-scrollbar-thumb {
+    background-color: #888; /* Color of the scrollbar thumb */
+    border-radius: 4px;
+}
+
+
+        .cart-container:hover .cart-preview {
+    visibility: visible; /* Make it visible */
+    opacity: 1;  /* Make it fully opaque */
+    transform: translateY(0);  /* Optional, adds smooth transition */
+}
+        
+        /* Cart Item Styling */
+        .cart-item {
+            align-items: center;
+            display: flex;
+            justify-content: flex-start;
+            width: 400px;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+            position: relative; /* Keep it relative to avoid it affecting layout */
+            height: 80px; /* Ensure consistent height */
+        }
+        
+        .cartcontents {
+            display: flex;
+            flex-direction: row;
+            width: 100%; /* Ensure it takes up the entire space */
+            justify-content: space-between; /* Distribute space between item info, quantity controls, and price */
+            align-items: center; /* Vertically align items */
+        }
+        
+        .cart-item-info {
+            display: flex;
+            flex-direction: column; /* Stack text vertically */
+            justify-content: flex-start;
+            width: 200px; /* Fixed width for consistent alignment */
+            height: 60px;
+            position: relative;
+            left:10px;
+            bottom: 10px;
+            gap:5px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 50px; /* Adjust width of quantity controls to fit the layout */
+            height: 100px;
+            position: relative;
+        }
+        
+        .cart-item-info p {
+            margin: 0; /* Remove margin for all <p> tags */
+            padding: 0; /* Remove padding */
+        }
+        
+        /* Product name and other details styling */
+        .product-name {
+            font-size: 16px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .code {
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px;
+        }
+        
+        .instock {
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        .product-price {
+            font-size: 16px;
+            color: #666;
+            width: 70px;
+            text-align: right; /* Align price to the right */
+            flex-shrink: 0; /* Prevent shrinking */
+            position: relative;
+            bottom:30px;
+        }
+        
+        /* Quantity Buttons */
+        .quantity-btn, .quantity-btn1 {
+            border: none;
+            position:relative;
+            bottom:10px;
+            background-color: #f1f1f1;
+            color: #333;
+            font-size: 18px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20%;
+        }
+        
+        .quantity-btn1 {
+            background-color: #555;
+            color: white;
+        }
+        
+        /* Quantity Text */
+        .quantity {
+            font-size: 16px;
+            margin: 0 7px; /* Space between the buttons and quantity */
+            position:relative;
+            bottom:10px;
+        }
+        
+        /* Remove Button Styling */
+        .remove-btn {
+            color: black;
+            border: none;
+            font-size:12px;
+            background-color: white;
+            cursor: pointer;
+            position: absolute;
+            padding: 0;
+            top: 70px; /* Move it below the image (adjust as needed) */
+            transform: translateY(0); /* Ensure it stays below the image */
+        }
+        
+        /* Cart Item Image */
+        .cart-item img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            bottom:14px;
+            position: relative; /* Ensure the image doesn't interfere with the remove button positioning */
+        }
+/* Total Price Section */
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px; /* Space from items */
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    position: relative;
+}
+
+.cart-total p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.cart-total .total-price {
+    font-size: 20px;
+    color: #2C7A7B; /* Use a sophisticated teal color */
+    font-weight: bold;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 20px; /* Space from the total section */
+    background-color: #2C7A7B; /* Button color */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #1f5f5b; /* Darken on hover */
+}
+
+.productspage footer{
+    top:400px;
+}
+
+</style>
+</head>
+<body class="productspage">
+    <div class="header-section">
+        <div id="eternity-title">
+        Eternity Gemstones
+        </div>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav justify-content-center mx-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="index.html" id="home-link"
+                                data-bs-toggle="dropdown" aria-expanded="false">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="productspagenew.html" id="rubies-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Products</a>
+                            <div class="dropdownwrapper2">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="productspagenew.html">Amethyst</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Diamond</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Ruby</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Sapphire</a></li>
+                                    <li><a class="dropdown-item" href="productspagenew.html">Emerald</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="amethyst-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Amethyst</a>
+                            <div class="dropdownwrapper4">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Amethyst Type 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Amethyst Type 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="diamonds-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Diamonds</a>
+                            <div class="dropdownwrapper5">
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Diamond Type 1</a></li>
+                                    <li><a class="dropdown-item" href="#">Diamond Type 2</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="contactpage.html" id="garnet-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">Contact Us</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="Aboutus.html" id="sapphire-link" data-bs-toggle="dropdown"
+                                aria-expanded="false">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <h1 style="font-family: Signika;" class="newin">NEW IN</h1>
+    <p class="newinin"><span style="font-family: 'Monotype Corsiva', cursive;font-size: 20px;">Explore the unparalleled craftsmanship, stunning color,
+        and radiant shine of gemstones <br> </span>
+        <span style="position:absolute;top:50px;font-family: Signika;">Whether you're searching for that perfect statement piece or <br> a subtle addition to your jewelry box, our new arrivals 
+        offer something truly special.</span>
+    </p>
+    <img class="biege" src="biegetest.jpeg" alt="">
+    <!-- sort by filter-->
+    <div class="sort-container">
+        <label for="sort-options" class="sort-label">Sort By:</label>
+        <select id="sort-options" class="sort-dropdown" onchange="sortProducts()">
+          <option value="best-selling">Best Selling</option>
+          <option value="price-low-high">Price, low to high</option>
+          <option value="price-high-low">Price, high to low</option>
+          <option value="alphabetical-az">Alphabetically, A-Z</option>
+          <option value="alphabetical-za">Alphabetically, Z-A</option>
+          <option value="date-old-new">Date, old to new</option>
+          <option value="date-new-old">Date, new to old</option>
+        </select>
+    </div>
+    <div class="cart-container">
+        <div class="icon-cart">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+            </svg>
+            <span>0</span>
+        </div>
+    
+        <div class="cart-preview">
+            <div class="cart-item">
+                <img src="rubynecklace.jpg" alt="Ruby Necklace">
+                <button class="remove-btn" onclick="removeItem(0)">Remove</button>
+                <div class="cartcontents">
+                    <div class="cart-item-info">
+                        <p class="product-name">Ruby Necklace</p>
+                        <p class="code">code: 101240</p>
+                        <p class="instock">In stock</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="decreaseQuantity(0)">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn1" onclick="increaseQuantity(0)">+</button>
+                    </div>
+                    <p class="product-price">£250</p>
+                </div>
+            </div>
+        
+            <div class="cart-item">
+                <img src="emeraldearring.jpg" alt="Emerald Ring">
+                <button class="remove-btn" onclick="removeItem(1)">Remove</button>
+                <div class="cartcontents">
+                    <div class="cart-item-info">
+                        <p class="product-name">Emerald Ring</p>
+                        <p class="code">code: 101240</p>
+                        <p class="instock">In stock</p>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="quantity-btn" onclick="decreaseQuantity(1)">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn1" onclick="increaseQuantity(1)">+</button>
+                    </div>
+                    <p class="product-price">£250</p>
+                </div>
+            </div>
+
+            <!-- Total and Checkout Section -->
+            <div class="cart-total">
+                <p>Total:</p>
+                <p class="total-price">£500</p> <!-- You can dynamically update this with JS -->
+            </div>
+
+            <a href="flexpreview.html" class="checkout-btn">Checkout Securely</a>
+        </div>
+    </div>
+    
+
+    <hr class="products-divider">
+
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="filters">
+            <h3>Filters</h3>   
+            <!-- Selected Filters Area -->
+            <div class="selected-filters" id="selected-filters"></div>
+            
+            <div class="filter-group">
+                <h4>Categories</h4>
+                <label><input type="checkbox" name="category" value="Rubies" onclick="updateSelectedFilters('Category: Rubies', this)"> Rubies</label>
+                <label><input type="checkbox" name="category" value="Emeralds" onclick="updateSelectedFilters('Category: Emeralds', this)"> Emeralds</label>
+                <label><input type="checkbox" name="category" value="Diamonds" onclick="updateSelectedFilters('Category: Diamonds', this)"> Diamonds</label>
+                <label><input type="checkbox" name="category" value="Sapphires" onclick="updateSelectedFilters('Category: Sapphires', this)"> Sapphires</label>
+            </div>
+    
+            <div class="divider"></div>
+    
+            <div class="filter-group">
+                <h4>Price Range</h4>
+                <label><input type="checkbox" name="price" value="£0 - £100" onclick="updateSelectedFilters('Price: £0 - £100', this)"> £0 - £100</label>
+                <label><input type="checkbox" name="price" value="£100 - £500" onclick="updateSelectedFilters('Price: £100 - £500', this)"> £100 - £500</label>
+                <label><input type="checkbox" name="price" value="£500 - £1000" onclick="updateSelectedFilters('Price: £500 - £1000', this)"> £500 - £1000</label>
+                <label><input type="checkbox" name="price" value="£1000+" onclick="updateSelectedFilters('Price: £1000+', this)"> £1000+</label>
+            </div>
+    
+            <div class="divider"></div>
+    
+            <div class="filter-group">
+                <h4>Brand</h4>
+                <label><input type="checkbox" name="brand" value="Eternity" onclick="updateSelectedFilters('Brand: Eternity', this)"> Eternity</label>
+                <label><input type="checkbox" name="brand" value="Legacy" onclick="updateSelectedFilters('Brand: Legacy', this)"> Legacy</label>
+                <label><input type="checkbox" name="brand" value="Premium Gems" onclick="updateSelectedFilters('Brand: Premium Gems', this)"> Premium Gems</label>
+            </div>
+        </div>
+    
+        <!-- Products Section -->
+        <div class="products"></div>
+    </div>
+    <footer>
+        <div class="footerposition">
+        <p><span style="font-family: 'Monotype Corsiva', cursive; font-size: 30px;position:relative;bottom:10px;">Sign up </span> <br> <span style="font-size: 20px;;">to our newsletter</span></p>
+        </div>
+        <div class="search-container">
+        <input type="email" class="search-input" placeholder="Your email">
+        <button class="search-button">Submit</button>
+        </div>          
+        <div class="footerfollow">
+        Follow Eternity Gemfields
+        </div>
+        <div>
+        <a class="footerlinks" href="#">Instagram</a><a class="footerlinks" href="#">Facebook</a><a class="footerlinks" href="#">Twitter</a>
+        </div>
+    </footer>
+<!--Adding products-->
+<script>
+    const products = [
+        { name: "Ruby Necklace", category: "Rubies", price: 250, brand: "Eternity", element: null, sold: 120, date: '2023-10-01', image: "rubynecklace.jpg", button: "detailedproductspagetest.html" },
+        { name: "Emerald Ring", category: "Emeralds", price: 400, brand: "Legacy", element: null, sold: 85, date: '2023-09-15', image: "emeraldring.jpg" },
+        { name: "Diamond Earrings", category: "Diamonds", price: 800, brand: "Premium Gems", element: null, sold: 45, date: '2023-11-05', image: "diamondearrings.jpg" },
+        { name: "Sapphire Bracelet", category: "Sapphires", price: 350, brand: "Eternity", element: null, sold: 70, date: '2023-10-10', image: "sapphirebracelet.jpg" },
+        { name: "Ruby Earrings", category: "Rubies", price: 150, brand: "Legacy", element: null, sold: 60, date: '2023-09-20', image: "rubyearrings.jpg" },
+        { name: "Emerald Necklace", category: "Emeralds", price: 500, brand: "Premium Gems", element: null, sold: 40, date: '2023-11-01', image: "emeraldnecklace.jpg" },
+        { name: "Diamond Ring", category: "Diamonds", price: 1200, brand: "Eternity", element: null, sold: 30, date: '2023-10-25', image: "diamondringn.jpg" },
+        { name: "Sapphire Necklace", category: "Sapphires", price: 400, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "sapphirenecklace.jpg" },
+        { name: "Ruby Ring", category: "Sapphires", price: 2300, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "rubyring.jpg" },
+        { name: "Emerald Earring", category: "Sapphires", price: 900, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "emeraldearring.jpg" },
+        { name: "Diamond Necklace", category: "Sapphires", price: 2000, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "diamondnecklace.jpg" },
+        { name: "Sapphire Ring", category: "Sapphires", price: 1800, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "saphhirering.jpg" },
+        { name: "Sapphire Earrings", category: "Sapphires", price: 540, brand: "Legacy", element: null, sold: 55, date: '2023-10-15', image: "sapphireearrings.jpg" }
+    ];
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    window.onload = () => {
+        const productsContainer = document.querySelector('.products');
+        products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.classList.add('product-card');
+            productCard.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h4>${product.name}</h4>
+                <p>£${product.price}</p>
+                <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+            `;
+            product.element = productCard;
+            productsContainer.appendChild(productCard);
+        });
+
+        updateCartPreview();
+        updateCartCount();
+    };
+    
+    // Function to add a product to the cart
+    function addToCart(name, price) {
+        const existingProduct = cart.find(item => item.name === name);
+    
+        if (existingProduct) {
+            // If the product already exists, increase the quantity
+            existingProduct.quantity += 1;
+        } else {
+            // Otherwise, add a new product to the cart
+            cart.push({ name, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+    
+        updateCartPreview(); // Update the cart preview
+        updateCartCount(); // Update the cart count in the icon
+    }
+    
+    // Function to update the cart preview
+    function updateCartPreview() {
+    const cartPreview = document.querySelector('.cart-preview');
+    cartPreview.innerHTML = ''; // Clear the current cart preview
+
+    if (cart.length === 0) {
+        const emptyCartMessage = document.createElement('p');
+        emptyCartMessage.textContent = 'Your cart is empty';
+        cartPreview.appendChild(emptyCartMessage);
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.name.toLowerCase().replace(' ', '') + '.jpg'}" alt="${item.name}">
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            <div class="cartcontents">
+                <div class="cart-item-info">
+                    <p class="product-name">${item.name}</p>
+                    <p class="code">code: 101240</p>
+                    <p class="instock">In stock</p>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn1" onclick="increaseQuantity(${index})">+</button>
+                </div>
+                <p class="product-price">£${item.price}</p>
+            </div>
+        `;
+        cartPreview.appendChild(cartItem);
+    });
+
+    // Add total price section
+    const totalSection = document.createElement('div');
+    totalSection.classList.add('cart-total');
+    totalSection.innerHTML = `
+        <p>Total:</p>
+        <p class="total-price">£${calculateTotalPrice()}</p>
+    `;
+    cartPreview.appendChild(totalSection);
+
+    // Add checkout button
+    const checkoutButton = document.createElement('button');
+    checkoutButton.classList.add('checkout-btn');
+    checkoutButton.textContent = 'Checkout Securely';
+
+    // Add event listener to the button
+    checkoutButton.addEventListener('click', function () {
+        window.location.href = "flexpreview.html"; // Redirect to the checkout page
+    });
+
+    cartPreview.appendChild(checkoutButton);
+}
+
+
+    // Function to calculate the total price of the cart
+    function calculateTotalPrice() {
+        return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+    }
+    
+    // Function to update the cart count in the icon cart
+    function updateCartCount() {
+        const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+        const cartCountElement = document.querySelector('.icon-cart span');
+        cartCountElement.textContent = cartCount;
+    }
+    
+    // Function to remove an item from the cart
+    function removeItem(index) {
+        cart.splice(index, 1); // Remove the item from the cart
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+        updateCartPreview(); // Update the cart preview
+        updateCartCount(); // Update the cart count in the icon
+    }
+    
+    // Function to increase the quantity of an item
+    function increaseQuantity(index) {
+        cart[index].quantity += 1;
+        localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+        updateCartPreview(); // Update the cart preview
+        updateCartCount(); // Update the cart count in the icon
+    }
+    
+    // Function to decrease the quantity of an item
+    function decreaseQuantity(index) {
+        if (cart[index].quantity > 1) {
+            cart[index].quantity -= 1;
+            localStorage.setItem('cart', JSON.stringify(cart)); // Save updated cart to localStorage
+            updateCartPreview(); // Update the cart preview
+            updateCartCount(); // Update the cart count in the icon
+        }
+    }
+    
+    // Toggle cart preview visibility when the cart icon is clicked
+    document.querySelector('.icon-cart').addEventListener('click', () => {
+        document.querySelector('.cart-preview').classList.toggle('visible');
+    });
+</script>
+
+<!-- filter products-->
+<script>
+// Update selected filters
+function updateSelectedFilters(filterLabel, checkbox) {
+    const selectedFiltersContainer = document.getElementById('selected-filters');
+    
+    // Create a filter tag if it's checked
+    if (checkbox.checked) {
+        const filterTag = document.createElement('div');
+        filterTag.classList.add('filter-tag');
+        filterTag.innerHTML = `${filterLabel} <button onclick="removeFilter(this)">x</button>`;
+        
+        // Store the checkbox reference in the filter tag
+        filterTag.checkbox = checkbox;
+
+        selectedFiltersContainer.appendChild(filterTag);
+    } else {
+        // If checkbox is unchecked, ensure the tag is removed
+        const tagToRemove = Array.from(selectedFiltersContainer.children)
+        .find(tag => tag.innerText.includes(filterLabel));
+        if (tagToRemove) {
+            selectedFiltersContainer.removeChild(tagToRemove);
+        }
+    }
+
+    // Filter products
+    filterProducts();
+}
+
+// Remove a filter when clicked above and uncheck the corresponding checkbox
+function removeFilter(button) {
+    const filterTag = button.parentElement;
+    
+    // Access the checkbox from the filter tag and uncheck it
+    if (filterTag.checkbox) {
+        filterTag.checkbox.checked = false;  // Uncheck the filter's checkbox
+    }
+
+    // Remove the filter tag
+    filterTag.remove();
+
+    // Update product display
+    filterProducts();
+}
+
+// Filter products based on selected filters
+function filterProducts() {
+    const selectedCategories = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'category')
+        .map(input => input.value);
+
+    const selectedPriceRanges = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'price')
+        .map(input => input.value);
+
+    const selectedBrands = Array.from(document.querySelectorAll('.filters input[type="checkbox"]:checked'))
+        .filter(input => input.name === 'brand')
+        .map(input => input.value);
+
+    // Hide or show products based on filters
+    products.forEach(product => {
+        const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+
+        const priceMatch = selectedPriceRanges.length === 0 || selectedPriceRanges.some(priceRange => {
+            if (priceRange === '£0 - £100') return product.price <= 100;
+            if (priceRange === '£100 - £500') return product.price > 100 && product.price <= 500;
+            if (priceRange === '£500 - £1000') return product.price > 500 && product.price <= 1000;
+            return product.price > 1000;
+        });
+
+        const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+
+        if (categoryMatch && priceMatch && brandMatch) {
+            product.element.style.display = 'block';  // Show the product
+        } else {
+            product.element.style.display = 'none';   // Hide the product
+        }
+    });
+}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      /* *{border: 1px solid black;}  */
+       *{
+        font-family: Signika;
+
+       }
+        body{
+            display:flex;
+            height: 1200px;
+                }
+.eternitygems{
+    position: absolute;
+    letter-spacing: 2px;
+    width:100%;
+    left:0px;
+    top:0px;
+    background-color: #555;
+}
+.eternitygems h1{
+    position: relative;
+    left:220px;
+    width:400px;
+    color: white;
+}
+/* Apply border only to necessary elements */
+.form-container, 
+.input-group input, 
+.submit-btn {
+    
+    border: 1px solid #ddd;
+}
+.form{
+    width: 500px;
+    position: relative;
+    left: 200px;
+    height: 1030px;
+    top: 101px;
+}
+/* Each Form Section */
+.form-container {
+    position: relative;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+.form-container1 {
+    position: relative;
+    height:400px;
+    margin-bottom: 30px;
+
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Section Headings */
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+/* Input Fields */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #444;
+}
+
+/* Input Styling with Clean Borders */
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    display: none;
+    margin-top: 5px;
+}
+
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .form-wrapper {
+        gap: 10px;
+    }
+
+    .form-container {
+        max-width: 90%;
+    }
+}
+
+        .cart-wrapper {
+    position: fixed;
+    right: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 110px;
+
+}
+
+.cart-preview {
+    width: 450px;
+    height: 450px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.cart-preview p{
+    font-weight: bold;
+    letter-spacing: 1px;
+    color:#333;
+}
+
+.cart-preview::-webkit-scrollbar {
+    width: 8px;
+}
+
+.cart-preview::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 4px;
+}
+
+/* New cart-footer styles */
+.cart-footer {
+    width: 450px;
+    height:80px;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid rgb(201, 196, 196);
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #ddd;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.cart-total p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.total-price {
+    font-size: 20px;
+    color: #2C7A7B;
+    font-weight: bold;
+}
+
+.checkout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* Removes underline */
+    width: 95% !important;
+    padding: 12px;
+    top:12px;
+    position: relative;
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #1f5f5b;
+}
+
+/* Cart Item Styling */
+.cart-item {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    width: 450px;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    position: relative;
+    height: 80px;
+}
+
+.cartcontents {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 200px;
+    height: 60px;
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    gap: 5px;
+}
+
+.quantity-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 100px;
+    position: relative;
+}
+
+.cart-item-info p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Product name and other details styling */
+.product-name {
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+}
+
+.code {
+    font-size: 12px;
+    color: #888;
+    margin-top: 10px;
+}
+
+.instock {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+}
+
+.product-price {
+    font-size: 16px;
+    color: #666;
+    width: 70px;
+    text-align: right;
+    flex-shrink: 0;
+    position: relative;
+    bottom: 30px;
+}
+
+/* Quantity Buttons */
+.quantity-btn, .quantity-btn1 {
+    border: none;
+    position: relative;
+    bottom: 10px;
+    background-color: #f1f1f1;
+    color: #333;
+    font-size: 18px;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20%;
+}
+
+.quantity-btn1 {
+    background-color: #555;
+    color: white;
+}
+
+/* Quantity Text */
+.quantity {
+    font-size: 16px;
+    margin: 0 7px;
+    position: relative;
+    bottom: 10px;
+}
+
+/* Remove Button Styling */
+.remove-btn {
+    color: black;
+    border: none;
+    font-size: 12px;
+    background-color: white;
+    cursor: pointer;
+    position: absolute;
+    padding: 0;
+    top: 70px;
+    transform: translateY(0);
+}
+
+/* Cart Item Image */
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    bottom: 14px;
+    position: relative;
+}
+
+    </style>
+</head>
+<body>
+    <div class="eternitygems">
+        <h1>Eternity Gemstones</h1>
+    </div>
+    <div class="form">
+        <div class="form-container1">
+            <h2>Contact Details</h2>
+            <div class="input-group">
+                <label for="full-name">Full Name</label>
+                <input type="text" id="full-name" placeholder="Enter your full name">
+                <span class="error-message" id="full-name-error">* Full name is required</span>
+            </div>
+            <div class="input-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" placeholder="Enter your last name">
+                <span class="error-message" id="last-name-error">* Last name is required</span>
+            </div>
+            <div class="input-group">
+                <label for="phone-number">Phone Number</label>
+                <input type="tel" id="phone-number" placeholder="Enter your phone number">
+                <span class="error-message" id="phone-number-error">* Phone number is required</span>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2>Address Details</h2>
+            <div class="input-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" placeholder="Enter your address">
+                <span class="error-message" id="address-error">* Address is required</span>
+            </div>
+            <div class="input-group">
+                <label for="city">City</label>
+                <input type="text" id="city" placeholder="Enter your city">
+                <span class="error-message" id="city-error">* City is required</span>
+            </div>
+            <div class="input-group">
+                <label for="county">County</label>
+                <input type="text" id="county" placeholder="Enter your county">
+                <span class="error-message" id="county-error">* County is required</span>
+            </div>
+            <div class="input-group">
+                <label for="postcode">Postcode</label>
+                <input type="text" id="postcode" placeholder="Enter your postcode">
+                <span class="error-message" id="postcode-error">* Postcode is required</span>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="cart-wrapper">
+        <div class="cart-preview">
+        <p>Summary:</p>
+            <!-- Cart items will be dynamically inserted here -->
+            <div class="cart-item-list"></div> <!-- Cart items container -->
+        </div>
+    
+        <!-- Total and Checkout Section (Moved Outside .cart-preview) -->
+        <div class="cart-footer">
+            <div class="cart-total">
+                <p>Total:</p>
+                <p class="total-price">£0.00</p> <!-- This will be updated dynamically -->
+            </div>
+    
+            <a href="form.html" class="checkout-btn">Checkout Securely</a>
+        </div>
+    </div>
+    
+<script>
+// Retrieve cart data from localStorage
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+// Function to update the cart preview on the checkout page
+function updateCartPreview() {
+    const cartPreview = document.querySelector('.cart-item-list');
+    cartPreview.innerHTML = ''; // Clear any existing items
+
+    if (cart.length === 0) {
+        cartPreview.innerHTML = '<p>Your cart is empty.</p>';
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+        cartItem.innerHTML = `
+            <img src="${item.name.toLowerCase().replace(' ', '') + '.jpg'}" alt="${item.name}">
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+            <div class="cartcontents">
+                <div class="cart-item-info">
+                    <p class="product-name">${item.name}</p>
+                    <p class="code">code: 101240</p>
+                    <p class="instock">In stock</p>
+                </div>
+                <div class="quantity-controls">
+                    <button class="quantity-btn" onclick="decreaseQuantity(${index})">-</button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="quantity-btn1" onclick="increaseQuantity(${index})">+</button>
+                </div>
+                <p class="product-price">£${item.price}</p>
+            </div>
+        `;
+        cartPreview.appendChild(cartItem);
+    });
+
+    document.querySelector('.cart-total .total-price').textContent = `£${calculateTotalPrice()}`;
+}
+
+// Function to calculate total price
+function calculateTotalPrice() {
+    return cart.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2);
+}
+
+// Function to remove an item from the cart
+function removeItem(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartPreview();
+}
+
+// Function to increase quantity
+function increaseQuantity(index) {
+    cart[index].quantity += 1;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartPreview();
+}
+
+// Function to decrease quantity
+function decreaseQuantity(index) {
+    if (cart[index].quantity > 1) {
+        cart[index].quantity -= 1;
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCartPreview();
+    }
+}
+
+// Checkout button functionality
+document.querySelector('.checkout-btn').addEventListener('click', function (event) {
+    if (!validateForm()) {
+        event.preventDefault(); // Stop submission if validation fails
+        alert("Please fill out all required fields correctly.");
+    } else {
+        alert("Proceeding to checkout");
+    }
+});
+
+// Improved input validation function
+function validateInput(inputId, errorId, validationType) {
+    const inputElement = document.getElementById(inputId);
+    const errorElement = document.getElementById(errorId);
+
+    function validate() {
+        const value = inputElement.value.trim();
+        let isValid = false;
+
+        switch (validationType) {
+            case 'text':
+                isValid = value.length > 1;
+                break;
+            case 'phone':
+                isValid = /^[0-9]{10,15}$/.test(value); // Allow 10-15 digit numbers
+                break;
+            case 'postcode':
+                isValid = /^[A-Za-z0-9 ]{5,10}$/.test(value); // Basic UK-style postcode validation
+                break;
+            default:
+                isValid = value.length > 0;
+        }
+
+        errorElement.style.display = isValid ? 'none' : 'block';
+    }
+
+    inputElement.addEventListener('input', validate);
+    inputElement.addEventListener('blur', validate);
+
+    validate(); // Run validation initially
+}
+
+// Function to validate all fields before form submission
+function validateForm() {
+    let isValid = true;
+    const fields = [
+        { id: 'full-name', type: 'text' },
+        { id: 'last-name', type: 'text' },
+        { id: 'phone-number', type: 'phone' },
+        { id: 'address', type: 'text' },
+        { id: 'city', type: 'text' },
+        { id: 'county', type: 'text' },
+        { id: 'postcode', type: 'postcode' }
+    ];
+
+    fields.forEach(field => {
+        const inputElement = document.getElementById(field.id);
+        if (!inputElement || inputElement.value.trim() === '') {
+            isValid = false;
+            document.getElementById(field.id + '-error').style.display = 'block';
+        }
+    });
+
+    return isValid;
+}
+
+// Add event listeners on window load
+window.onload = function () {
+    updateCartPreview();
+
+    // Initialize validation for all fields
+    validateInput('full-name', 'full-name-error', 'text');
+    validateInput('last-name', 'last-name-error', 'text');
+    validateInput('phone-number', 'phone-number-error', 'phone');
+    validateInput('address', 'address-error', 'text');
+    validateInput('city', 'city-error', 'text');
+    validateInput('county', 'county-error', 'text');
+    validateInput('postcode', 'postcode-error', 'postcode');
+};
+
+// JavaScript to handle cart sticking behavior
+window.addEventListener('scroll', function () {
+    const cartWrapper = document.querySelector('.cart-wrapper');
+    const form = document.querySelector('.form');
+
+    if (!cartWrapper || !form) return; // Prevent errors if elements are missing
+
+    const formRect = form.getBoundingClientRect();
+    const cartHeight = cartWrapper.offsetHeight; // Height of the cart
+    const viewportTop = window.scrollY; // Current scroll position
+
+    // Get the position of the form's bottom and the cart's bottom
+    const formBottom = formRect.bottom + viewportTop; // Form's bottom relative to the document
+    const cartBottom = viewportTop + 110 + cartHeight; // Cart's bottom relative to the document (starting from 110px)
+
+    // Check if the cart has scrolled past the form's bottom
+    if (cartBottom >= formBottom - 22) { // Stop 20px before form's bottom
+        cartWrapper.style.position = 'absolute';
+        cartWrapper.style.top = `${formBottom - cartHeight - 22}px`; // Stop cart 20px before form's bottom
+    } else {
+        cartWrapper.style.position = 'fixed';
+        cartWrapper.style.top = '110px'; // Keep cart sticky when above form
+    }
+});
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
